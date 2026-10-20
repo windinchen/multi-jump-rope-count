@@ -1,0 +1,4 @@
+OpenCV: not authorized to capture video (status 0), requesting...
+OpenCV: can not spin main run loop from other thread, set OPENCV_AVFOUNDATION_SKIP_AUTH=1 to disable authorization request and perform it in your application.
+OpenCV: camera failed to properly initialize!
+[ WARN:0@2.443] global cap_ffmpeg_impl.hpp:1240 open VIDEOIO/FFMPEG: Failed list devices for backend avfoundation

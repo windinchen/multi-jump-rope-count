@@ -1,0 +1,129 @@
+{
+  "score": 68.9,
+  "verdict": "基本可用",
+  "issues": [
+    {
+      "level": "error",
+      "code": "SPLIT_TRACK",
+      "label": "同一人被拆成多条轨迹",
+      "track_id": [
+        4,
+        6
+      ],
+      "message": "轨迹 4 与 6 时间高度重叠且水平位置仅差 46.8px, 很可能是同一个人被数了两次",
+      "extra": {
+        "overlap_frac": 0.575,
+        "dx": 46.78
+      }
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 1,
+      "message": "轨迹断开 2 次, 断档处的跳跃容易漏计",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 3,
+      "message": "检测到 6 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 6
+      }
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 4,
+      "message": "轨迹断开 6 次, 断档处的跳跃容易漏计",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 4,
+      "message": "检测到 5 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 5
+      }
+    },
+    {
+      "level": "warn",
+      "code": "WEAK_RHYTHM",
+      "label": "节律不清晰",
+      "track_id": 6,
+      "message": "节律强度仅 0.162, 计数阈值退化为人工作业水平",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 6,
+      "message": "可见率 0.2326 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 6,
+      "message": "轨迹断开 7 次, 断档处的跳跃容易漏计",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "WEAK_RHYTHM",
+      "label": "节律不清晰",
+      "track_id": 7,
+      "message": "节律强度仅 0.232, 计数阈值退化为人工作业水平",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 7,
+      "message": "可见率 0.2286 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 7,
+      "message": "轨迹断开 4 次, 断档处的跳跃容易漏计",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TOO_SHORT",
+      "label": "轨迹太短",
+      "track_id": 8,
+      "message": "轨迹仅 7 个观测点, 直接放弃计数",
+      "extra": {}
+    },
+    {
+      "level": "info",
+      "code": "AMPLITUDE_CLAMPED",
+      "label": "振幅阈值被压低",
+      "track_id": 2,
+      "message": "振幅阈值贴近信号幅值, 小幅起跳可能被整段丢弃",
+      "extra": {}
+    }
+  ],
+  "counts_by_code": {
+    "SPLIT_TRACK": 1,
+    "TRACK_FRAGMENTED": 4,
+    "ESTIMATED_MISSES": 2,
+    "WEAK_RHYTHM": 2,
+    "LOW_VISIBILITY": 2,
+    "TOO_SHORT": 1,
+    "AMPLITUDE_CLAMPED": 1
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "score": 46.5,
+  "verdict": "存疑",
+  "issues": [
+    {
+      "level": "error",
+      "code": "SPLIT_TRACK",
+      "label": "同一人被拆成多条轨迹",
+      "track_id": [
+        1,
+        12
+      ],
+      "message": "轨迹 1 与 12 时间高度重叠且水平位置仅差 94.0px, 很可能是同一个人被数了两次",
+      "extra": {
+        "overlap_frac": 0.641,
+        "dx": 94.03
+      }
+    },
+    {
+      "level": "error",
+      "code": "SPLIT_TRACK",
+      "label": "同一人被拆成多条轨迹",
+      "track_id": [
+        2,
+        11
+      ],
+      "message": "轨迹 2 与 11 时间高度重叠且水平位置仅差 43.8px, 很可能是同一个人被数了两次",
+      "extra": {
+        "overlap_frac": 0.684,
+        "dx": 43.82
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 1,
+      "message": "可见率 0.6916 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 1,
+      "message": "信号出现 12 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 1,
+      "message": "检测到 18 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 18
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 2,
+      "message": "可见率 0.654 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 2,
+      "message": "信号出现 19 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 2,
+      "message": "检测到 22 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 22
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 3,
+      "message": "可见率 0.5683 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 3,
+      "message": "信号出现 27 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 3,
+      "message": "检测到 53 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 53
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 4,
+      "message": "可见率 0.5013 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 4,
+      "message": "信号出现 25 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 4,
+      "message": "检测到 34 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 34
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 11,
+      "message": "可见率 0.6073 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 11,
+      "message": "信号出现 16 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 11,
+      "message": "检测到 18 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 18
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 12,
+      "message": "可见率 0.7261 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 12,
+      "message": "信号出现 12 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 12,
+      "message": "检测到 27 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 27
+      }
+    },
+    {
+      "level": "info",
+      "code": "TRACK_EXCLUDED",
+      "label": "未参与总计数",
+      "track_id": 9,
+      "message": "该轨迹不计入总量: 仅出现 1.9s, 不足 2.0s (其 1 次已剔除)",
+      "extra": {}
+    }
+  ],
+  "counts_by_code": {
+    "SPLIT_TRACK": 2,
+    "LOW_VISIBILITY": 6,
+    "TRACK_FRAGMENTED": 6,
+    "ESTIMATED_MISSES": 6,
+    "TRACK_EXCLUDED": 1
+  }
+}

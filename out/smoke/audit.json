@@ -1,0 +1,212 @@
+{
+  "score": 72.9,
+  "verdict": "基本可用",
+  "issues": [
+    {
+      "level": "error",
+      "code": "SPLIT_TRACK",
+      "label": "同一人被拆成多条轨迹",
+      "track_id": [
+        1,
+        5
+      ],
+      "message": "轨迹 1 与 5 时间高度重叠且水平位置仅差 48.2px, 很可能是同一个人被数了两次",
+      "extra": {
+        "overlap_frac": 1.0,
+        "dx": 48.17
+      }
+    },
+    {
+      "level": "error",
+      "code": "SPLIT_TRACK",
+      "label": "同一人被拆成多条轨迹",
+      "track_id": [
+        8,
+        11
+      ],
+      "message": "轨迹 8 与 11 时间高度重叠且水平位置仅差 39.8px, 很可能是同一个人被数了两次",
+      "extra": {
+        "overlap_frac": 0.932,
+        "dx": 39.85
+      }
+    },
+    {
+      "level": "error",
+      "code": "SPLIT_TRACK",
+      "label": "同一人被拆成多条轨迹",
+      "track_id": [
+        10,
+        11
+      ],
+      "message": "轨迹 10 与 11 时间高度重叠且水平位置仅差 37.6px, 很可能是同一个人被数了两次",
+      "extra": {
+        "overlap_frac": 0.934,
+        "dx": 37.62
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 8,
+      "message": "可见率 0.7749 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 8,
+      "message": "检测到 3 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 3
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_CONF",
+      "label": "检测置信度偏低",
+      "track_id": 9,
+      "message": "平均检测置信度 0.4785 偏低",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "PROVISIONAL",
+      "label": "低置信计入",
+      "track_id": 10,
+      "message": "低置信计入 2 次: 只数到 2 个但节奏清楚, 低置信计入",
+      "extra": {
+        "reason": "只数到 2 个但节奏清楚, 低置信计入"
+      }
+    },
+    {
+      "level": "warn",
+      "code": "LOW_VISIBILITY",
+      "label": "目标可见率过低",
+      "track_id": 10,
+      "message": "可见率 0.6616 偏低, 断档期靠插值撑信号",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "LOW_CONF",
+      "label": "检测置信度偏低",
+      "track_id": 10,
+      "message": "平均检测置信度 0.4979 偏低",
+      "extra": {}
+    },
+    {
+      "level": "warn",
+      "code": "TRACK_FRAGMENTED",
+      "label": "轨迹频繁断开",
+      "track_id": 10,
+      "message": "信号出现 2 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+      "extra": {}
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 2,
+      "message": "另有 3 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 3
+      }
+    },
+    {
+      "level": "info",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 2,
+      "message": "检测到 3 次超过 1.8 倍周期的空档, 其中 3 个已按实测节奏补齐",
+      "extra": {
+        "estimated_misses": 3,
+        "filled": 3,
+        "misses_unobserved": 0
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 3,
+      "message": "另有 2 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 2
+      }
+    },
+    {
+      "level": "info",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 3,
+      "message": "检测到 6 次超过 1.8 倍周期的空档, 其中 2 个已按实测节奏补齐",
+      "extra": {
+        "estimated_misses": 6,
+        "filled": 2,
+        "misses_unobserved": 0
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 4,
+      "message": "另有 1 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 1
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 7,
+      "message": "另有 2 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 2
+      }
+    },
+    {
+      "level": "info",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 7,
+      "message": "检测到 2 次超过 1.8 倍周期的空档, 其中 2 个已按实测节奏补齐",
+      "extra": {
+        "estimated_misses": 2,
+        "filled": 2,
+        "misses_unobserved": 0
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 9,
+      "message": "另有 1 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 1
+      }
+    },
+    {
+      "level": "info",
+      "code": "TRACK_EXCLUDED",
+      "label": "未参与总计数",
+      "track_id": 11,
+      "message": "不计入总量(6 次已剔除): 框高波动 0.18 过大, 这条轨迹在不同人之间跳",
+      "extra": {}
+    }
+  ],
+  "counts_by_code": {
+    "SPLIT_TRACK": 3,
+    "LOW_VISIBILITY": 2,
+    "ESTIMATED_MISSES": 4,
+    "LOW_CONF": 2,
+    "PROVISIONAL": 1,
+    "TRACK_FRAGMENTED": 1,
+    "FILLED_GAPS": 5,
+    "TRACK_EXCLUDED": 1
+  }
+}

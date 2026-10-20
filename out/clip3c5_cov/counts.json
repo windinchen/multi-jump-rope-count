@@ -1,0 +1,3872 @@
+{
+  "video": "/Users/windinchen/Desktop/项目任务/多人跳绳计数/跳绳素材/3c5e84ee19443e3fbb8fa26778b5bc6c.mp4",
+  "fps": 25.0,
+  "width": 1280.0,
+  "height": 720.0,
+  "frames": 534,
+  "duration": 21.36,
+  "detector": "跳绳素材/yolo26s-pose.pt",
+  "policy": "jump",
+  "signal_sources": {
+    "1": "ankle",
+    "2": "ankle",
+    "3": "ankle",
+    "4": "ankle",
+    "5": "ankle",
+    "6": "ankle",
+    "7": "ankle",
+    "8": "ankle",
+    "9": "ankle",
+    "10": "ankle",
+    "11": "ankle",
+    "12": "box_bottom",
+    "13": "ankle",
+    "16": "ankle"
+  },
+  "participants": 12,
+  "participants_confident": 11,
+  "total_jumps": 291,
+  "total_jumps_direct": 201,
+  "total_jumps_filled": 90,
+  "total_jumps_confident": 289,
+  "total_rope_passes": 295,
+  "expected_by_rhythm": 459.6,
+  "rhythm_coverage": 0.633,
+  "track_count": 14,
+  "excluded_tracks": [
+    {
+      "track_id": 12,
+      "count": 0,
+      "reason": "观测点太少"
+    },
+    {
+      "track_id": 16,
+      "count": 1,
+      "reason": "只数到 1 个, 还不够确认在连续跳绳"
+    }
+  ],
+  "provisional_tracks": [
+    {
+      "track_id": 13,
+      "count": 2,
+      "reason": "只数到 2 个但节奏清楚, 低置信计入"
+    }
+  ],
+  "identity_actions": [],
+  "elapsed_sec": 110.57,
+  "fps_processed": 4.83,
+  "crowding": {
+    "mean_max_iou": 0.0521,
+    "p95_max_iou": 0.1442
+  },
+  "tracking_events": [
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 41,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 57,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 74,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 74,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 84,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 84,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 100,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 131,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 167,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 167,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 177,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 177,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 187,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 187,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 197,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 197,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 207,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 207,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 217,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 217,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 225,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 225,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 241,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 241,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 251,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 251,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 260,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 260,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 269,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 269,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 279,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 279,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 289,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 289,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 300,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 300,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 310,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 310,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 310,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 317,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 317,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 327,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 327,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 337,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 337,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 349,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 349,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 359,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 359,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 370,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 370,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 380,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 10,
+      "frame": 380,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 389,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 389,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 399,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 416,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 416,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 426,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 426,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 438,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 438,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 448,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 448,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 459,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 459,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 469,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 469,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 469,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 476,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 476,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 476,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 483,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 483,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 483,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 490,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 490,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 490,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 497,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 497,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 507,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 507,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 507,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 514,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 514,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 514,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 521,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 521,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 521,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 528,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 528,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 528,
+      "gap_frames": 7
+    }
+  ],
+  "config": {
+    "classes": [
+      0
+    ],
+    "imgsz": 1280,
+    "conf": 0.35,
+    "device": null,
+    "match_thresh": 0.35,
+    "match_iou_w": 0.6,
+    "match_scale": 0.6,
+    "nms_iou": 0.45,
+    "dup_center_ratio": 0.3,
+    "dup_min_iou": 0.25,
+    "max_age": 15,
+    "min_hits": 3,
+    "reid_window": 45,
+    "reid_dist": 0.9,
+    "merge_gap_frames": 60,
+    "merge_dist_ratio": 0.9,
+    "dup_overlap": 0.5,
+    "dup_dist_ratio": 0.45,
+    "dup_iou_min": 0.35,
+    "min_track_sec": 2.0,
+    "min_track_visibility": 0.5,
+    "slot_identity": true,
+    "slot_dist_ratio": 0.5,
+    "slot_claim_gap": 8,
+    "slot_height_ratio": 1.6,
+    "slot_keep_frames": 250,
+    "ghost_display_sec": 0.35,
+    "slot_overlap_iou": 0.55,
+    "dup_box_iou": 0.5,
+    "signal_source": "auto",
+    "channel_select": "coverage",
+    "channel_switch_margin": 0.08,
+    "kp_conf": 0.3,
+    "max_gap": 12,
+    "smooth_win": 3,
+    "baseline_win": 91,
+    "min_rate_hz": 0.5,
+    "max_rate_hz": 3.5,
+    "min_amplitude": 2.0,
+    "amplitude_ratio": 0.004,
+    "snr_k": 3.0,
+    "peak_frac": 0.08,
+    "floor_relief": 1.0,
+    "refractory_ratio": 0.6,
+    "double_under_ratio": 0.62,
+    "gap_ratio": 1.8,
+    "interpolate_gaps": true,
+    "policy": "jump",
+    "poll_hz": 6.0,
+    "max_excursion_ratio": 1.2,
+    "max_excursion_hard": 2.5,
+    "drift_window_sec": 3.0,
+    "min_lift_ratio": 0.012,
+    "min_ankle_sync": -0.1,
+    "min_ankle_strong": 0.85,
+    "require_pose_sync": true,
+    "warmup_sec": 1.0,
+    "online_window_sec": 12.0,
+    "min_count_active": 5,
+    "keep_rhythm_strength": 0.35,
+    "min_track_visibility_floor": 0.25,
+    "min_count_provisional": 2,
+    "max_height_cv": 0.18,
+    "min_fill_coverage": 0.7,
+    "max_fill_per_gap": 2,
+    "tolerance_sec": 0.15,
+    "tolerance_ratio": 0.4
+  },
+  "tracks": [
+    {
+      "track_id": 1,
+      "first_frame": 2,
+      "last_frame": 533,
+      "count": 8,
+      "count_rope": 14,
+      "events": [
+        {
+          "frame": 104.483,
+          "time": 4.1793,
+          "amplitude": 2.889,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 111.461,
+          "time": 4.4584,
+          "amplitude": 12.082,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 120.455,
+          "time": 4.8182,
+          "amplitude": 21.561,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 131.5,
+          "time": 5.26,
+          "amplitude": 9.511,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 142.365,
+          "time": 5.6946,
+          "amplitude": 16.125,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 154.37962590838754,
+          "time": 6.175185036335502,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 166.3946726698391,
+          "time": 6.655786906793564,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 250.5,
+          "time": 10.02,
+          "amplitude": 2.812,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 263.5,
+          "time": 10.54,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 276.5,
+          "time": 11.06,
+          "amplitude": 8.488,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 287.5,
+          "time": 11.5,
+          "amplitude": 5.019,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 299.2734089656123,
+          "time": 11.970936358624494,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 311.0468179312246,
+          "time": 12.441872717248984,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 452.328,
+          "time": 18.0931,
+          "amplitude": 3.102,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.46,
+      "rate_hz": 2.174,
+      "signal_source": "ankle",
+      "visibility": 0.9831,
+      "median_height": 248.71,
+      "snr": 77.74,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 523,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.14,
+        "bottom_spread_ratio": 0.75,
+        "duration_sec": 21.28,
+        "visibility": 0.9831,
+        "excursion_px": 27.6,
+        "rhythm_strength": 0.477,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 9,
+        "noise": 0.093,
+        "noise_mad": 0.744,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 7.238,
+        "bumps": 1,
+        "estimated_misses": 22,
+        "filled": 5,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.0291,
+        "lift_ratio_best": 0.0324,
+        "excursion_ratio": 0.111,
+        "ankle_sync": 0.996,
+        "count": 8,
+        "expected_count": 46.3,
+        "total_count": 13,
+        "rhythm_coverage": 0.281,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          1
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.9065,
+        "center_x_mean": 814.24
+      }
+    },
+    {
+      "track_id": 2,
+      "first_frame": 2,
+      "last_frame": 533,
+      "count": 26,
+      "count_rope": 39,
+      "events": [
+        {
+          "frame": 88.5,
+          "time": 3.54,
+          "amplitude": 4.729,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 98.5,
+          "time": 3.94,
+          "amplitude": 22.374,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 106.5,
+          "time": 4.26,
+          "amplitude": 23.352,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 115.434,
+          "time": 4.6174,
+          "amplitude": 21.41,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 123.66216944602783,
+          "time": 4.9464867778411135,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 131.8898948042018,
+          "time": 5.275595792168072,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 148.345,
+          "time": 5.9338,
+          "amplitude": 7.967,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 163.5,
+          "time": 6.54,
+          "amplitude": 5.803,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 170.5,
+          "time": 6.82,
+          "amplitude": 8.652,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 180.9556565080295,
+          "time": 7.238226260321181,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 191.411,
+          "time": 7.6565,
+          "amplitude": 16.081,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 199.465,
+          "time": 7.9786,
+          "amplitude": 18.365,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 207.478,
+          "time": 8.2991,
+          "amplitude": 11.323,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 216.74960813123977,
+          "time": 8.66998432524959,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 226.02125218218603,
+          "time": 9.04085008728744,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 235.293,
+          "time": 9.4117,
+          "amplitude": 9.122,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 244.88103556213255,
+          "time": 9.795241422485303,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 254.469,
+          "time": 10.1788,
+          "amplitude": 8.625,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 262.5,
+          "time": 10.5,
+          "amplitude": 11.26,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 271.5,
+          "time": 10.86,
+          "amplitude": 13.216,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 280.5,
+          "time": 11.219999999999999,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 289.5,
+          "time": 11.58,
+          "amplitude": 9.248,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 297.79539177246875,
+          "time": 11.91181567089875,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 306.0907835449375,
+          "time": 12.2436313417975,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 322.682,
+          "time": 12.9073,
+          "amplitude": 7.48,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 331.588,
+          "time": 13.2635,
+          "amplitude": 6.913,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 339.532,
+          "time": 13.5813,
+          "amplitude": 7.632,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 347.553,
+          "time": 13.9021,
+          "amplitude": 5.905,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 355.9739490274738,
+          "time": 14.238957961098953,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 364.39495752289486,
+          "time": 14.575798300915794,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 406.5,
+          "time": 16.26,
+          "amplitude": 11.672,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 414.5,
+          "time": 16.58,
+          "amplitude": 10.277,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 424.5,
+          "time": 16.98,
+          "amplitude": 6.683,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 433.5,
+          "time": 17.34,
+          "amplitude": 7.465,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 441.75,
+          "time": 17.67,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 450.0,
+          "time": 18.0,
+          "amplitude": 2.742,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 466.5,
+          "time": 18.66,
+          "amplitude": 10.972,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 482.459,
+          "time": 19.2984,
+          "amplitude": 5.351,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 491.381,
+          "time": 19.6552,
+          "amplitude": 4.953,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.36,
+      "rate_hz": 2.778,
+      "signal_source": "ankle",
+      "visibility": 1.0,
+      "median_height": 298.16,
+      "snr": 6.86,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 532,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.031,
+        "bottom_spread_ratio": 0.166,
+        "duration_sec": 21.28,
+        "visibility": 1.0,
+        "excursion_px": 17.7,
+        "rhythm_strength": 0.564,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 26,
+        "noise": 1.523,
+        "noise_mad": 5.777,
+        "amplitude_threshold": 4.57,
+        "peak_level_p95": 10.443,
+        "bumps": 0,
+        "estimated_misses": 20,
+        "filled": 13,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.035,
+        "lift_ratio_best": 0.0382,
+        "excursion_ratio": 0.059,
+        "ankle_sync": 0.969,
+        "count": 26,
+        "expected_count": 59.1,
+        "total_count": 39,
+        "rhythm_coverage": 0.66,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          2
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.9395,
+        "center_x_mean": 620.6
+      }
+    },
+    {
+      "track_id": 3,
+      "first_frame": 2,
+      "last_frame": 533,
+      "count": 15,
+      "count_rope": 25,
+      "events": [
+        {
+          "frame": 107.5,
+          "time": 4.3,
+          "amplitude": 3.505,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 117.5,
+          "time": 4.699999999999999,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 127.5,
+          "time": 5.1,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 187.5,
+          "time": 7.5,
+          "amplitude": 2.653,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 194.5,
+          "time": 7.78,
+          "amplitude": 2.508,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 204.7,
+          "time": 8.187999999999999,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 214.9,
+          "time": 8.596,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 245.5,
+          "time": 9.82,
+          "amplitude": 25.111,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 255.5,
+          "time": 10.22,
+          "amplitude": 26.787,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 265.7,
+          "time": 10.628,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 275.9,
+          "time": 11.035999999999998,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 357.5,
+          "time": 14.3,
+          "amplitude": 8.987,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 365.5,
+          "time": 14.62,
+          "amplitude": 4.869,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 374.214,
+          "time": 14.9686,
+          "amplitude": 3.312,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 383.5,
+          "time": 15.34,
+          "amplitude": 2.129,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 394.6641428715714,
+          "time": 15.786565714862856,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 405.8282857431428,
+          "time": 16.233131429725713,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 428.157,
+          "time": 17.1263,
+          "amplitude": 4.476,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 438.5,
+          "time": 17.54,
+          "amplitude": 2.924,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 448.25,
+          "time": 17.93,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 458.0,
+          "time": 18.32,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 477.5,
+          "time": 19.1,
+          "amplitude": 16.677,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 485.916,
+          "time": 19.4366,
+          "amplitude": 17.322,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 496.0,
+          "time": 19.84,
+          "amplitude": 13.862,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 502.5,
+          "time": 20.1,
+          "amplitude": 11.628,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.4,
+      "rate_hz": 2.5,
+      "signal_source": "ankle",
+      "visibility": 1.0,
+      "median_height": 247.29,
+      "snr": 86.35,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 532,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.058,
+        "bottom_spread_ratio": 0.294,
+        "duration_sec": 21.28,
+        "visibility": 1.0,
+        "excursion_px": 23.4,
+        "rhythm_strength": 0.818,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 15,
+        "noise": 0.207,
+        "noise_mad": 1.485,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 17.885,
+        "bumps": 0,
+        "estimated_misses": 26,
+        "filled": 10,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.0723,
+        "lift_ratio_best": 0.0895,
+        "excursion_ratio": 0.095,
+        "ankle_sync": 0.943,
+        "count": 15,
+        "expected_count": 53.2,
+        "total_count": 25,
+        "rhythm_coverage": 0.47,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          3
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.9277,
+        "center_x_mean": 1059.9
+      }
+    },
+    {
+      "track_id": 4,
+      "first_frame": 2,
+      "last_frame": 533,
+      "count": 30,
+      "count_rope": 42,
+      "events": [
+        {
+          "frame": 66.5,
+          "time": 2.66,
+          "amplitude": 1.843,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 77.5,
+          "time": 3.1,
+          "amplitude": 2.14,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 85.99411357970777,
+          "time": 3.439764543188311,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 94.48822715941554,
+          "time": 3.7795290863766215,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 128.465,
+          "time": 5.1386,
+          "amplitude": 0.991,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 141.495,
+          "time": 5.6598,
+          "amplitude": 1.831,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 150.05751460121064,
+          "time": 6.002300584048426,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 158.6197196651471,
+          "time": 6.344788786605885,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 201.431,
+          "time": 8.0572,
+          "amplitude": 1.456,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 208.89768171297732,
+          "time": 8.355907268519092,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 216.365,
+          "time": 8.6546,
+          "amplitude": 1.297,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 224.5,
+          "time": 8.98,
+          "amplitude": 1.432,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 238.303,
+          "time": 9.5321,
+          "amplitude": 1.026,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 246.5,
+          "time": 9.86,
+          "amplitude": 1.332,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 254.481,
+          "time": 10.1792,
+          "amplitude": 1.482,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 262.0,
+          "time": 10.48,
+          "amplitude": 0.969,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 269.5,
+          "time": 10.78,
+          "amplitude": 1.708,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 278.415,
+          "time": 11.1366,
+          "amplitude": 1.605,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 285.8753221507111,
+          "time": 11.435012886028444,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 293.335662301976,
+          "time": 11.73342649207904,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 330.637,
+          "time": 13.2255,
+          "amplitude": 1.359,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 338.5,
+          "time": 13.54,
+          "amplitude": 2.077,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 346.5,
+          "time": 13.86,
+          "amplitude": 2.149,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 354.447,
+          "time": 14.1779,
+          "amplitude": 0.9,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 362.7103096236043,
+          "time": 14.508412384944172,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 370.9735397490696,
+          "time": 14.838941589962783,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 387.5,
+          "time": 15.5,
+          "amplitude": 2.006,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 394.5,
+          "time": 15.78,
+          "amplitude": 1.562,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 402.42,
+          "time": 16.0968,
+          "amplitude": 1.208,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 410.83384672709536,
+          "time": 16.433353869083817,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 419.2472483575901,
+          "time": 16.769889934303606,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 444.487,
+          "time": 17.7795,
+          "amplitude": 1.823,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 452.0716382968658,
+          "time": 18.08286553187463,
+          "amplitude": 0.518,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 459.656,
+          "time": 18.3862,
+          "amplitude": 2.109,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 468.376,
+          "time": 18.735,
+          "amplitude": 1.871,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 475.46,
+          "time": 19.0184,
+          "amplitude": 1.591,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 484.5,
+          "time": 19.38,
+          "amplitude": 0.953,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 492.5,
+          "time": 19.7,
+          "amplitude": 1.885,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 499.5,
+          "time": 19.98,
+          "amplitude": 2.802,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 509.5,
+          "time": 20.38,
+          "amplitude": 5.338,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 517.5,
+          "time": 20.7,
+          "amplitude": 5.646,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 524.5,
+          "time": 20.98,
+          "amplitude": 1.246,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.32,
+      "rate_hz": 3.125,
+      "signal_source": "ankle",
+      "visibility": 0.9906,
+      "median_height": 151.71,
+      "snr": 7.88,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 527,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.02,
+        "bottom_spread_ratio": 0.074,
+        "duration_sec": 21.28,
+        "visibility": 0.9906,
+        "excursion_px": 5.4,
+        "rhythm_strength": 0.551,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 30,
+        "noise": 0.244,
+        "noise_mad": 0.986,
+        "amplitude_threshold": 0.864,
+        "peak_level_p95": 1.92,
+        "bumps": 0,
+        "estimated_misses": 26,
+        "filled": 12,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.0127,
+        "lift_ratio_best": 0.0249,
+        "excursion_ratio": 0.036,
+        "ankle_sync": 0.968,
+        "count": 30,
+        "expected_count": 66.5,
+        "total_count": 42,
+        "rhythm_coverage": 0.632,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          4
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.9115,
+        "center_x_mean": 514.19
+      }
+    },
+    {
+      "track_id": 5,
+      "first_frame": 2,
+      "last_frame": 533,
+      "count": 31,
+      "count_rope": 41,
+      "events": [
+        {
+          "frame": 77.493,
+          "time": 3.0997,
+          "amplitude": 5.021,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 86.289,
+          "time": 3.4515,
+          "amplitude": 4.053,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 94.415,
+          "time": 3.7766,
+          "amplitude": 5.654,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 102.377,
+          "time": 4.0951,
+          "amplitude": 4.535,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 111.963,
+          "time": 4.4785,
+          "amplitude": 4.075,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 121.627,
+          "time": 4.8651,
+          "amplitude": 2.789,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 131.5,
+          "time": 5.26,
+          "amplitude": 3.058,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 141.527,
+          "time": 5.6611,
+          "amplitude": 8.907,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 156.5,
+          "time": 6.26,
+          "amplitude": 4.371,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 167.04078381392384,
+          "time": 6.681631352556953,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 177.582,
+          "time": 7.1033,
+          "amplitude": 4.815,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 185.328,
+          "time": 7.4131,
+          "amplitude": 3.128,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 193.975,
+          "time": 7.759,
+          "amplitude": 4.25,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 202.5,
+          "time": 8.1,
+          "amplitude": 2.083,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 211.9,
+          "time": 8.476,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 221.3,
+          "time": 8.852,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 249.5,
+          "time": 9.98,
+          "amplitude": 4.068,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 258.379,
+          "time": 10.3352,
+          "amplitude": 3.332,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 272.5,
+          "time": 10.9,
+          "amplitude": 6.234,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 282.4914456441649,
+          "time": 11.299657825766598,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 292.483,
+          "time": 11.6993,
+          "amplitude": 8.281,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 301.9110456161061,
+          "time": 12.076441824644244,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 311.3391999438823,
+          "time": 12.453567997755291,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 339.624,
+          "time": 13.5849,
+          "amplitude": 8.171,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 349.58244195147404,
+          "time": 13.983297678058962,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 359.541220975737,
+          "time": 14.38164883902948,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 369.5,
+          "time": 14.78,
+          "amplitude": 3.532,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 378.5,
+          "time": 15.14,
+          "amplitude": 2.917,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 389.448,
+          "time": 15.5779,
+          "amplitude": 5.592,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 398.394,
+          "time": 15.9358,
+          "amplitude": 3.461,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 408.424,
+          "time": 16.337,
+          "amplitude": 3.203,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 417.7829980692966,
+          "time": 16.711319922771864,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 427.1414990346483,
+          "time": 17.08565996138593,
+          "amplitude": 1.232,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 436.5,
+          "time": 17.46,
+          "amplitude": 2.954,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 445.381,
+          "time": 17.8152,
+          "amplitude": 4.593,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 454.5,
+          "time": 18.18,
+          "amplitude": 3.322,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 464.384,
+          "time": 18.5754,
+          "amplitude": 5.213,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 472.5,
+          "time": 18.9,
+          "amplitude": 2.149,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 489.616,
+          "time": 19.5847,
+          "amplitude": 3.092,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 499.501,
+          "time": 19.9801,
+          "amplitude": 3.664,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 513.5,
+          "time": 20.54,
+          "amplitude": 2.158,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.4,
+      "rate_hz": 2.5,
+      "signal_source": "ankle",
+      "visibility": 0.9981,
+      "median_height": 160.29,
+      "snr": 6.57,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 531,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.038,
+        "bottom_spread_ratio": 0.068,
+        "duration_sec": 21.28,
+        "visibility": 0.9981,
+        "excursion_px": 10.8,
+        "rhythm_strength": 0.489,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 31,
+        "noise": 0.695,
+        "noise_mad": 2.388,
+        "amplitude_threshold": 2.053,
+        "peak_level_p95": 4.561,
+        "bumps": 0,
+        "estimated_misses": 14,
+        "filled": 10,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.0285,
+        "lift_ratio_best": 0.0481,
+        "excursion_ratio": 0.067,
+        "ankle_sync": 0.973,
+        "count": 31,
+        "expected_count": 53.2,
+        "total_count": 41,
+        "rhythm_coverage": 0.771,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          5
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.8956,
+        "center_x_mean": 755.95
+      }
+    },
+    {
+      "track_id": 6,
+      "first_frame": 2,
+      "last_frame": 533,
+      "count": 29,
+      "count_rope": 47,
+      "events": [
+        {
+          "frame": 94.106,
+          "time": 3.7642,
+          "amplitude": 2.16,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 102.42649376192617,
+          "time": 4.0970597504770465,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 110.74682393383146,
+          "time": 4.429872957353259,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 119.067,
+          "time": 4.7627,
+          "amplitude": 2.496,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 126.5,
+          "time": 5.06,
+          "amplitude": 3.247,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 135.409,
+          "time": 5.4164,
+          "amplitude": 2.555,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 143.4393421814041,
+          "time": 5.737573687256163,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 151.46967109070206,
+          "time": 6.0587868436280825,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 159.5,
+          "time": 6.38,
+          "amplitude": 1.563,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 167.468,
+          "time": 6.6987,
+          "amplitude": 1.569,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 174.457,
+          "time": 6.9783,
+          "amplitude": 1.827,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 182.105,
+          "time": 7.2842,
+          "amplitude": 1.723,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 189.5,
+          "time": 7.58,
+          "amplitude": 1.705,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 197.5,
+          "time": 7.9,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 205.5,
+          "time": 8.219999999999999,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 221.5,
+          "time": 8.86,
+          "amplitude": 2.689,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 228.672,
+          "time": 9.1469,
+          "amplitude": 2.333,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 236.545,
+          "time": 9.4618,
+          "amplitude": 1.294,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 244.5,
+          "time": 9.78,
+          "amplitude": 2.202,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 252.377,
+          "time": 10.0951,
+          "amplitude": 2.429,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 260.7279912296046,
+          "time": 10.429119649184184,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 269.0790701785074,
+          "time": 10.763162807140295,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 302.483,
+          "time": 12.0993,
+          "amplitude": 1.964,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 310.3175385542821,
+          "time": 12.412701542171286,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 318.15169113444574,
+          "time": 12.72606764537783,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 325.986,
+          "time": 13.0394,
+          "amplitude": 3.1,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 334.473,
+          "time": 13.3789,
+          "amplitude": 1.589,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 347.5,
+          "time": 13.9,
+          "amplitude": 3.134,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 355.94164494535113,
+          "time": 14.237665797814046,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 364.38328989070226,
+          "time": 14.575331595628091,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 381.267,
+          "time": 15.2507,
+          "amplitude": 4.523,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 389.496,
+          "time": 15.5799,
+          "amplitude": 6.02,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 397.386,
+          "time": 15.8955,
+          "amplitude": 5.515,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 404.66483247737835,
+          "time": 16.186593299095133,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 411.94322165158553,
+          "time": 16.477728866063423,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 426.5,
+          "time": 17.06,
+          "amplitude": 3.985,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 436.5,
+          "time": 17.46,
+          "amplitude": 2.129,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 445.5,
+          "time": 17.82,
+          "amplitude": 2.158,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 452.50127585556163,
+          "time": 18.100051034222464,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 459.5025517111233,
+          "time": 18.38010206844493,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 473.505,
+          "time": 18.9402,
+          "amplitude": 1.87,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 481.5,
+          "time": 19.26,
+          "amplitude": 3.325,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 488.5,
+          "time": 19.54,
+          "amplitude": 1.217,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 495.5,
+          "time": 19.82,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 502.5,
+          "time": 20.1,
+          "amplitude": 0.728,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 516.5,
+          "time": 20.66,
+          "amplitude": 1.549,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 525.5,
+          "time": 21.02,
+          "amplitude": 2.707,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.32,
+      "rate_hz": 3.125,
+      "signal_source": "ankle",
+      "visibility": 1.0,
+      "median_height": 149.5,
+      "snr": 7.31,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 532,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.025,
+        "bottom_spread_ratio": 0.072,
+        "duration_sec": 21.28,
+        "visibility": 1.0,
+        "excursion_px": 7.2,
+        "rhythm_strength": 0.493,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 29,
+        "noise": 0.369,
+        "noise_mad": 1.31,
+        "amplitude_threshold": 1.214,
+        "peak_level_p95": 2.697,
+        "bumps": 0,
+        "estimated_misses": 26,
+        "filled": 18,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.018,
+        "lift_ratio_best": 0.0366,
+        "excursion_ratio": 0.048,
+        "ankle_sync": 0.973,
+        "count": 29,
+        "expected_count": 66.5,
+        "total_count": 47,
+        "rhythm_coverage": 0.707,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          6
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.8881,
+        "center_x_mean": 356.78
+      }
+    },
+    {
+      "track_id": 7,
+      "first_frame": 2,
+      "last_frame": 533,
+      "count": 28,
+      "count_rope": 42,
+      "events": [
+        {
+          "frame": 88.501,
+          "time": 3.54,
+          "amplitude": 7.439,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 96.5,
+          "time": 3.86,
+          "amplitude": 8.704,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 105.166,
+          "time": 4.2066,
+          "amplitude": 13.556,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 115.219,
+          "time": 4.6088,
+          "amplitude": 11.773,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 123.64586097468246,
+          "time": 4.945834438987299,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 132.07293048734124,
+          "time": 5.28291721949365,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 140.5,
+          "time": 5.62,
+          "amplitude": 6.557,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 150.5,
+          "time": 6.02,
+          "amplitude": 8.785,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 159.5,
+          "time": 6.380000000000001,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 168.5,
+          "time": 6.74,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 186.5,
+          "time": 7.46,
+          "amplitude": 3.992,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 195.5,
+          "time": 7.82,
+          "amplitude": 5.319,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 204.5,
+          "time": 8.18,
+          "amplitude": 5.87,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 216.5,
+          "time": 8.66,
+          "amplitude": 16.364,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 223.593,
+          "time": 8.9437,
+          "amplitude": 10.426,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 234.511,
+          "time": 9.3805,
+          "amplitude": 7.727,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 244.60453653612302,
+          "time": 9.784181461444922,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 254.698,
+          "time": 10.1879,
+          "amplitude": 4.49,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 264.5,
+          "time": 10.58,
+          "amplitude": 4.334,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 274.4969457912181,
+          "time": 10.979877831648723,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 284.494,
+          "time": 11.3798,
+          "amplitude": 3.007,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 295.9969457912181,
+          "time": 11.839877831648723,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 307.5,
+          "time": 12.3,
+          "amplitude": 5.323,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 315.119,
+          "time": 12.6047,
+          "amplitude": 5.73,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 326.5,
+          "time": 13.06,
+          "amplitude": 8.642,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 335.5,
+          "time": 13.42,
+          "amplitude": 11.294,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 345.5,
+          "time": 13.82,
+          "amplitude": 10.019,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 356.5,
+          "time": 14.26,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 367.5,
+          "time": 14.7,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 389.5,
+          "time": 15.58,
+          "amplitude": 3.349,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 400.48080740945346,
+          "time": 16.01923229637814,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 411.4616148189069,
+          "time": 16.45846459275628,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 433.423,
+          "time": 17.3369,
+          "amplitude": 7.157,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 440.391,
+          "time": 17.6156,
+          "amplitude": 7.509,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 450.3729333896122,
+          "time": 18.014917335584485,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 460.35497532330425,
+          "time": 18.41419901293217,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 470.337,
+          "time": 18.8135,
+          "amplitude": 5.612,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 482.14934273263873,
+          "time": 19.28597370930555,
+          "amplitude": 1.41,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 493.962,
+          "time": 19.7585,
+          "amplitude": 3.351,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 503.5,
+          "time": 20.14,
+          "amplitude": 13.491,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 518.5,
+          "time": 20.74,
+          "amplitude": 5.841,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 526.5,
+          "time": 21.06,
+          "amplitude": 3.303,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.4,
+      "rate_hz": 2.5,
+      "signal_source": "ankle",
+      "visibility": 1.0,
+      "median_height": 235.08,
+      "snr": 13.16,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 532,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.038,
+        "bottom_spread_ratio": 0.352,
+        "duration_sec": 21.28,
+        "visibility": 1.0,
+        "excursion_px": 21.3,
+        "rhythm_strength": 0.485,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 28,
+        "noise": 0.783,
+        "noise_mad": 4.016,
+        "amplitude_threshold": 2.35,
+        "peak_level_p95": 10.31,
+        "bumps": 0,
+        "estimated_misses": 17,
+        "filled": 14,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.0439,
+        "lift_ratio_best": 0.0544,
+        "excursion_ratio": 0.091,
+        "ankle_sync": 0.962,
+        "count": 28,
+        "expected_count": 53.2,
+        "total_count": 42,
+        "rhythm_coverage": 0.789,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          7
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.8922,
+        "center_x_mean": 228.51
+      }
+    },
+    {
+      "track_id": 8,
+      "first_frame": 2,
+      "last_frame": 528,
+      "count": 8,
+      "count_rope": 8,
+      "events": [
+        {
+          "frame": 113.113,
+          "time": 4.5245,
+          "amplitude": 12.173,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 167.134,
+          "time": 6.6854,
+          "amplitude": 39.654,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 207.5,
+          "time": 8.3,
+          "amplitude": 8.967,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 246.5,
+          "time": 9.86,
+          "amplitude": 5.316,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 388.5,
+          "time": 15.54,
+          "amplitude": 47.484,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 439.604,
+          "time": 17.5842,
+          "amplitude": 60.376,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 490.535,
+          "time": 19.6214,
+          "amplitude": 51.745,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 520.5,
+          "time": 20.82,
+          "amplitude": 108.246,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 1.56,
+      "rate_hz": 0.641,
+      "signal_source": "ankle",
+      "visibility": 0.5636,
+      "median_height": 143.5,
+      "snr": 72.34,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 297,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.111,
+        "bottom_spread_ratio": 0.393,
+        "duration_sec": 21.08,
+        "visibility": 0.5636,
+        "excursion_px": 70.1,
+        "rhythm_strength": 0.284,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 10,
+        "noise": 0.732,
+        "noise_mad": 5.004,
+        "amplitude_threshold": 4.237,
+        "peak_level_p95": 52.963,
+        "bumps": 0,
+        "estimated_misses": 3,
+        "filled": 0,
+        "misses_unobserved": 0,
+        "long_holes": 3,
+        "lift_ratio": 0.3691,
+        "lift_ratio_best": 0.4022,
+        "excursion_ratio": 0.489,
+        "ankle_sync": 0.998,
+        "count": 8,
+        "expected_count": 13.5,
+        "total_count": 8,
+        "rhythm_coverage": 0.593,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          8
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.7561,
+        "center_x_mean": 931.74
+      }
+    },
+    {
+      "track_id": 9,
+      "first_frame": 2,
+      "last_frame": 250,
+      "count": 5,
+      "count_rope": 7,
+      "events": [
+        {
+          "frame": 76.959,
+          "time": 3.0784,
+          "amplitude": 5.921,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 91.5,
+          "time": 3.66,
+          "amplitude": 5.611,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 114.65,
+          "time": 4.586,
+          "amplitude": 2.953,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 129.004,
+          "time": 5.1602,
+          "amplitude": 4.422,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 184.5,
+          "time": 7.38,
+          "amplitude": 6.989,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 204.523,
+          "time": 8.1809,
+          "amplitude": 5.411,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 242.5,
+          "time": 9.7,
+          "amplitude": 8.0,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.96,
+      "rate_hz": 1.042,
+      "signal_source": "ankle",
+      "visibility": 0.9237,
+      "median_height": 89.07,
+      "snr": 18.89,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 230,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.122,
+        "bottom_spread_ratio": 0.0,
+        "duration_sec": 9.96,
+        "visibility": 0.9237,
+        "excursion_px": 45.9,
+        "rhythm_strength": 0.311,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 7,
+        "noise": 0.296,
+        "noise_mad": 3.688,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 5.6,
+        "bumps": 2,
+        "estimated_misses": 1,
+        "filled": 0,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.0629,
+        "lift_ratio_best": 0.228,
+        "excursion_ratio": 0.515,
+        "ankle_sync": null,
+        "count": 5,
+        "expected_count": 10.4,
+        "total_count": 5,
+        "rhythm_coverage": 0.481,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          9
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.5671,
+        "center_x_mean": 1120.98
+      }
+    },
+    {
+      "track_id": 10,
+      "first_frame": 2,
+      "last_frame": 533,
+      "count": 7,
+      "count_rope": 8,
+      "events": [
+        {
+          "frame": 88.014,
+          "time": 3.5206,
+          "amplitude": 11.208,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 149.448,
+          "time": 5.9779,
+          "amplitude": 12.092,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 204.237,
+          "time": 8.1695,
+          "amplitude": 11.476,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 268.5,
+          "time": 10.74,
+          "amplitude": 49.024,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 305.851,
+          "time": 12.234,
+          "amplitude": 20.858,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 359.24,
+          "time": 14.3696,
+          "amplitude": 34.852,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 412.86997848418923,
+          "time": 16.514799139367568,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 466.5,
+          "time": 18.66,
+          "amplitude": 34.859,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 1.84,
+      "rate_hz": 0.543,
+      "signal_source": "ankle",
+      "visibility": 0.6241,
+      "median_height": 130.8,
+      "snr": 52.23,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 332,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.137,
+        "bottom_spread_ratio": 0.492,
+        "duration_sec": 21.28,
+        "visibility": 0.6241,
+        "excursion_px": 10.4,
+        "rhythm_strength": 0.534,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 11,
+        "noise": 0.419,
+        "noise_mad": 5.455,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 21.864,
+        "bumps": 0,
+        "estimated_misses": 1,
+        "filled": 1,
+        "misses_unobserved": 0,
+        "long_holes": 2,
+        "lift_ratio": 0.1672,
+        "lift_ratio_best": 0.2092,
+        "excursion_ratio": 0.08,
+        "ankle_sync": 0.995,
+        "count": 7,
+        "expected_count": 11.6,
+        "total_count": 8,
+        "rhythm_coverage": 0.69,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          10
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.7474,
+        "center_x_mean": 956.83
+      }
+    },
+    {
+      "track_id": 11,
+      "first_frame": 15,
+      "last_frame": 533,
+      "count": 12,
+      "count_rope": 20,
+      "events": [
+        {
+          "frame": 49.5,
+          "time": 1.98,
+          "amplitude": 2.66,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 80.098,
+          "time": 3.2039,
+          "amplitude": 5.152,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 113.567,
+          "time": 4.5427,
+          "amplitude": 7.362,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 153.5,
+          "time": 6.14,
+          "amplitude": 3.639,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 173.16666666666666,
+          "time": 6.926666666666666,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 192.83333333333334,
+          "time": 7.713333333333334,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 212.5,
+          "time": 8.5,
+          "amplitude": 3.825,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 245.92,
+          "time": 9.8368,
+          "amplitude": 2.793,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 261.5,
+          "time": 10.46,
+          "amplitude": 14.288,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 284.1481733410476,
+          "time": 11.365926933641903,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 306.79634668209513,
+          "time": 12.271853867283804,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 329.445,
+          "time": 13.1778,
+          "amplitude": 13.383,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 353.5713205009183,
+          "time": 14.142852820036733,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 377.698,
+          "time": 15.1079,
+          "amplitude": 7.93,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 391.5,
+          "time": 15.66,
+          "amplitude": 3.765,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 415.5040023448786,
+          "time": 16.620160093795146,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 439.508,
+          "time": 17.5803,
+          "amplitude": 12.363,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 459.297,
+          "time": 18.3719,
+          "amplitude": 4.093,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 485.4710146686398,
+          "time": 19.418840586745592,
+          "amplitude": 1.2,
+          "confidence": 0.3,
+          "kind": "interpolated"
+        },
+        {
+          "frame": 511.645,
+          "time": 20.4658,
+          "amplitude": 11.773,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.92,
+      "rate_hz": 1.087,
+      "signal_source": "ankle",
+      "visibility": 0.7611,
+      "median_height": 109.44,
+      "snr": 24.56,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 395,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.151,
+        "bottom_spread_ratio": 0.604,
+        "duration_sec": 20.76,
+        "visibility": 0.7611,
+        "excursion_px": 17.9,
+        "rhythm_strength": 0.567,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 17,
+        "noise": 0.437,
+        "noise_mad": 3.465,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 10.736,
+        "bumps": 1,
+        "estimated_misses": 7,
+        "filled": 7,
+        "misses_unobserved": 0,
+        "long_holes": 3,
+        "lift_ratio": 0.0981,
+        "lift_ratio_best": 0.0981,
+        "excursion_ratio": 0.164,
+        "ankle_sync": 0.99,
+        "count": 12,
+        "expected_count": 22.6,
+        "total_count": 19,
+        "rhythm_coverage": 0.841,
+        "verdict": "in",
+        "participant": true,
+        "merged_from": [
+          11
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.582,
+        "center_x_mean": 975.5
+      }
+    },
+    {
+      "track_id": 12,
+      "first_frame": 306,
+      "last_frame": 309,
+      "count": 0,
+      "count_rope": 0,
+      "events": [],
+      "period_sec": 0.0,
+      "rate_hz": 0.0,
+      "signal_source": "box_bottom",
+      "visibility": 0.0,
+      "median_height": 67.78,
+      "snr": 0.0,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 4,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.011,
+        "bottom_spread_ratio": 0.0,
+        "duration_sec": 0.16,
+        "visibility": 0.0,
+        "excursion_px": 0.0,
+        "reject": "too_short",
+        "merged_from": [
+          12
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.4697,
+        "center_x_mean": 874.62,
+        "verdict": "out",
+        "participant": false,
+        "excluded": "观测点太少"
+      }
+    },
+    {
+      "track_id": 13,
+      "first_frame": 332,
+      "last_frame": 387,
+      "count": 2,
+      "count_rope": 2,
+      "events": [
+        {
+          "frame": 360.476,
+          "time": 14.419,
+          "amplitude": 5.203,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 375.5,
+          "time": 15.02,
+          "amplitude": 7.103,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.6325,
+      "rate_hz": 1.581,
+      "signal_source": "ankle",
+      "visibility": 0.5536,
+      "median_height": 56.57,
+      "snr": 99.0,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 31,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.111,
+        "bottom_spread_ratio": 0.0,
+        "duration_sec": 2.24,
+        "visibility": 0.5536,
+        "excursion_px": 57.5,
+        "rhythm_strength": 0.374,
+        "period_source": "自相关",
+        "period_estimated": true,
+        "coarse_peaks": 2,
+        "noise": 0.0,
+        "noise_mad": 0.435,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 5.332,
+        "bumps": 0,
+        "estimated_misses": 0,
+        "filled": 0,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.0943,
+        "lift_ratio_best": 0.1072,
+        "excursion_ratio": 1.017,
+        "ankle_sync": null,
+        "count": 2,
+        "expected_count": 3.5,
+        "total_count": 2,
+        "rhythm_coverage": 0.571,
+        "verdict": "provisional",
+        "participant": true,
+        "merged_from": [
+          13
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.4051,
+        "center_x_mean": 395.15,
+        "provisional_reason": "只数到 2 个但节奏清楚, 低置信计入"
+      }
+    },
+    {
+      "track_id": 16,
+      "first_frame": 454,
+      "last_frame": 533,
+      "count": 1,
+      "count_rope": 1,
+      "events": [
+        {
+          "frame": 514.952,
+          "time": 20.5981,
+          "amplitude": 4.051,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 1.7996,
+      "rate_hz": 0.556,
+      "signal_source": "ankle",
+      "visibility": 0.9375,
+      "median_height": 78.71,
+      "snr": 99.0,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 75,
+        "signal_coverage": 1.0,
+        "substituted_frames": 0,
+        "height_cv": 0.077,
+        "bottom_spread_ratio": 0.0,
+        "duration_sec": 3.2,
+        "visibility": 0.9375,
+        "excursion_px": 7.6,
+        "rhythm_strength": 0.269,
+        "period_source": "自相关",
+        "period_estimated": true,
+        "coarse_peaks": 2,
+        "noise": 0.032,
+        "noise_mad": 1.299,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 7.948,
+        "bumps": 0,
+        "estimated_misses": 0,
+        "filled": 0,
+        "misses_unobserved": 0,
+        "long_holes": 0,
+        "lift_ratio": 0.101,
+        "lift_ratio_best": 0.101,
+        "excursion_ratio": 0.097,
+        "ankle_sync": null,
+        "count": 1,
+        "expected_count": 1.8,
+        "total_count": 1,
+        "rhythm_coverage": 0.556,
+        "verdict": "out",
+        "participant": false,
+        "excluded": "只数到 1 个, 还不够确认在连续跳绳",
+        "merged_from": [
+          16
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.5406,
+        "center_x_mean": 412.31
+      }
+    }
+  ],
+  "audit": {
+    "score": 68.6,
+    "verdict": "基本可用",
+    "issues": [
+      {
+        "level": "error",
+        "code": "SPLIT_TRACK",
+        "label": "同一人被拆成多条轨迹",
+        "track_id": [
+          1,
+          5
+        ],
+        "message": "轨迹 1 与 5 时间高度重叠且水平位置仅差 58.3px, 很可能是同一个人被数了两次",
+        "extra": {
+          "overlap_frac": 1.0,
+          "dx": 58.29
+        }
+      },
+      {
+        "level": "error",
+        "code": "SPLIT_TRACK",
+        "label": "同一人被拆成多条轨迹",
+        "track_id": [
+          8,
+          10
+        ],
+        "message": "轨迹 8 与 10 时间高度重叠且水平位置仅差 25.1px, 很可能是同一个人被数了两次",
+        "extra": {
+          "overlap_frac": 0.991,
+          "dx": 25.09
+        }
+      },
+      {
+        "level": "error",
+        "code": "SPLIT_TRACK",
+        "label": "同一人被拆成多条轨迹",
+        "track_id": [
+          8,
+          11
+        ],
+        "message": "轨迹 8 与 11 时间高度重叠且水平位置仅差 43.8px, 很可能是同一个人被数了两次",
+        "extra": {
+          "overlap_frac": 0.975,
+          "dx": 43.76
+        }
+      },
+      {
+        "level": "error",
+        "code": "SPLIT_TRACK",
+        "label": "同一人被拆成多条轨迹",
+        "track_id": [
+          10,
+          11
+        ],
+        "message": "轨迹 10 与 11 时间高度重叠且水平位置仅差 18.7px, 很可能是同一个人被数了两次",
+        "extra": {
+          "overlap_frac": 0.976,
+          "dx": 18.67
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 8,
+        "message": "可见率 0.5636 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 8,
+        "message": "信号出现 3 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 8,
+        "message": "检测到 3 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+        "extra": {
+          "estimated_misses": 3
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 10,
+        "message": "可见率 0.6241 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 10,
+        "message": "信号出现 2 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 11,
+        "message": "可见率 0.7611 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 11,
+        "message": "信号出现 3 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TOO_SHORT",
+        "label": "轨迹太短",
+        "track_id": 12,
+        "message": "轨迹仅 4 个观测点, 直接放弃计数",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "PROVISIONAL",
+        "label": "低置信计入",
+        "track_id": 13,
+        "message": "低置信计入 2 次: 只数到 2 个但节奏清楚, 低置信计入",
+        "extra": {
+          "reason": "只数到 2 个但节奏清楚, 低置信计入"
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 13,
+        "message": "可见率 0.5536 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "LOW_CONF",
+        "label": "检测置信度偏低",
+        "track_id": 13,
+        "message": "平均检测置信度 0.4051 偏低",
+        "extra": {}
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 1,
+        "message": "另有 5 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 5
+        }
+      },
+      {
+        "level": "info",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 1,
+        "message": "检测到 22 次超过 1.8 倍周期的空档, 其中 5 个已按实测节奏补齐",
+        "extra": {
+          "estimated_misses": 22,
+          "filled": 5,
+          "misses_unobserved": 0
+        }
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 2,
+        "message": "另有 13 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 13
+        }
+      },
+      {
+        "level": "info",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 2,
+        "message": "检测到 20 次超过 1.8 倍周期的空档, 其中 13 个已按实测节奏补齐",
+        "extra": {
+          "estimated_misses": 20,
+          "filled": 13,
+          "misses_unobserved": 0
+        }
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 3,
+        "message": "另有 10 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 10
+        }
+      },
+      {
+        "level": "info",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 3,
+        "message": "检测到 26 次超过 1.8 倍周期的空档, 其中 10 个已按实测节奏补齐",
+        "extra": {
+          "estimated_misses": 26,
+          "filled": 10,
+          "misses_unobserved": 0
+        }
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 4,
+        "message": "另有 12 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 12
+        }
+      },
+      {
+        "level": "info",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 4,
+        "message": "检测到 26 次超过 1.8 倍周期的空档, 其中 12 个已按实测节奏补齐",
+        "extra": {
+          "estimated_misses": 26,
+          "filled": 12,
+          "misses_unobserved": 0
+        }
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 5,
+        "message": "另有 10 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 10
+        }
+      },
+      {
+        "level": "info",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 5,
+        "message": "检测到 14 次超过 1.8 倍周期的空档, 其中 10 个已按实测节奏补齐",
+        "extra": {
+          "estimated_misses": 14,
+          "filled": 10,
+          "misses_unobserved": 0
+        }
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 6,
+        "message": "另有 18 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 18
+        }
+      },
+      {
+        "level": "info",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 6,
+        "message": "检测到 26 次超过 1.8 倍周期的空档, 其中 18 个已按实测节奏补齐",
+        "extra": {
+          "estimated_misses": 26,
+          "filled": 18,
+          "misses_unobserved": 0
+        }
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 7,
+        "message": "另有 14 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 14
+        }
+      },
+      {
+        "level": "info",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 7,
+        "message": "检测到 17 次超过 1.8 倍周期的空档, 其中 14 个已按实测节奏补齐",
+        "extra": {
+          "estimated_misses": 17,
+          "filled": 14,
+          "misses_unobserved": 0
+        }
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 10,
+        "message": "另有 1 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 1
+        }
+      },
+      {
+        "level": "info",
+        "code": "FILLED_GAPS",
+        "label": "按节奏补齐漏计",
+        "track_id": 11,
+        "message": "另有 7 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+        "extra": {
+          "filled": 7
+        }
+      },
+      {
+        "level": "info",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 11,
+        "message": "检测到 7 次超过 1.8 倍周期的空档, 其中 7 个已按实测节奏补齐",
+        "extra": {
+          "estimated_misses": 7,
+          "filled": 7,
+          "misses_unobserved": 0
+        }
+      },
+      {
+        "level": "info",
+        "code": "TRACK_EXCLUDED",
+        "label": "未参与总计数",
+        "track_id": 16,
+        "message": "不计入总量(1 次已剔除): 只数到 1 个, 还不够确认在连续跳绳",
+        "extra": {}
+      }
+    ],
+    "counts_by_code": {
+      "SPLIT_TRACK": 4,
+      "LOW_VISIBILITY": 4,
+      "TRACK_FRAGMENTED": 3,
+      "ESTIMATED_MISSES": 9,
+      "TOO_SHORT": 1,
+      "PROVISIONAL": 1,
+      "LOW_CONF": 1,
+      "FILLED_GAPS": 9,
+      "TRACK_EXCLUDED": 1
+    }
+  }
+}

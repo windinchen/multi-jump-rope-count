@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>多人跳绳计数</title>
+<link rel="icon" href="favicon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    <h1>多人跳绳计数</h1>
+    <span class="sub" id="model-name">模型加载中…</span>
+  </div>
+  <div class="metrics">
+    <div class="metric"><b id="m-people">0</b><span>画面人数</span></div>
+    <div class="metric"><b id="m-counting">0</b><span>计数中</span></div>
+    <div class="metric highlight"><b id="m-total">0</b><span>总次数</span></div>
+    <div class="metric"><b id="m-rope">0</b><span>过绳次数</span></div>
+    <div class="metric"><b id="m-fps">0</b><span>处理帧率</span></div>
+  </div>
+  <div class="status" id="status"><i></i><span>连接中</span></div>
+</header>
+
+<main class="layout">
+  <section class="stage">
+    <div class="frame">
+      <img id="feed" alt="实时画面" src="/stream">
+      <div class="overlay" id="feed-error" hidden>
+        <p id="feed-error-text">画面未就绪</p>
+        <button class="btn" id="btn-retry">重试画面</button>
+      </div>
+    </div>
+    <div class="controls">
+      <label class="field">
+        <span>画面源</span>
+        <select id="source"></select>
+      </label>
+      <label class="field">
+        <span>计数口径</span>
+        <select id="policy">
+          <option value="jump">按起跳（双摇算 1 个）</option>
+          <option value="rope">按过绳（双摇算 2 个）</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>灵敏度 <em id="sens-val">50</em></span>
+        <input type="range" id="sensitivity" min="1" max="100" step="1" value="50" title="1 最严, 50 默认, 100 最松">
+      </label>
+      <label class="field">
+        <span>检测门槛 <em id="conf-val">0.35</em></span>
+        <input type="range" id="conf" min="0.2" max="0.8" step="0.05" value="0.35">
+      </label>
+      <label class="field">
+        <span>分析精度</span>
+        <select id="imgsz">
+          <option value="640">省算力</option>
+          <option value="960">均衡</option>
+          <option value="1152">较高（略快，检出基本不掉）</option>
+          <option value="1280" selected>高（适合远景小人）</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>入围门槛</span>
+        <select id="strictness">
+          <option value="0.65">严（只数全程看清的人）</option>
+          <option value="0.5" selected>标准</option>
+          <option value="0.35">松（遮挡多也数）</option>
+        </select>
+      </label>
+      <div class="spacer"></div>
+      <button class="btn" id="btn-pause">暂停</button>
+      <button class="btn primary" id="btn-reset">重新计数</button>
+    </div>
+  </section>
+
+  <aside class="side">
+    <h2>每人计数</h2>
+    <div id="cards" class="cards"></div>
+    <p class="empty" id="cards-empty">还没有稳定识别到人，让画面里的人站定 2 秒左右。</p>
+
+    <h2>计数可信度提示</h2>
+    <ul class="notes" id="notes"></ul>
+    <p class="empty" id="notes-empty">暂无异常，当前计数可信。</p>
+
+    <h2>最近跳跃</h2>
+    <ul class="events" id="events"></ul>
+  </aside>
+</main>
+
+<footer class="foot">
+  <span id="clock">t=0.0s · 帧 0</span>
+  <span class="sep"></span>
+  <span>绿色=正在计数 · 灰色=走动路人不计入 · 黄色=刚进入画面或信号不足</span>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

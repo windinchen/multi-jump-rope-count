@@ -1,0 +1,140 @@
+{
+  "score": 82.9,
+  "verdict": "可靠",
+  "issues": [
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 1,
+      "message": "检测到 14 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 14
+      }
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 2,
+      "message": "检测到 13 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 13
+      }
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 3,
+      "message": "检测到 13 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 13
+      }
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 4,
+      "message": "检测到 12 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 12
+      }
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 5,
+      "message": "检测到 13 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 13
+      }
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 6,
+      "message": "检测到 17 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 17
+      }
+    },
+    {
+      "level": "warn",
+      "code": "ESTIMATED_MISSES",
+      "label": "存在疑似漏计空档",
+      "track_id": 7,
+      "message": "检测到 8 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+      "extra": {
+        "estimated_misses": 8
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 1,
+      "message": "另有 11 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 11
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 2,
+      "message": "另有 6 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 6
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 3,
+      "message": "另有 10 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 10
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 5,
+      "message": "另有 12 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 12
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 6,
+      "message": "另有 12 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 12
+      }
+    },
+    {
+      "level": "info",
+      "code": "FILLED_GAPS",
+      "label": "按节奏补齐漏计",
+      "track_id": 7,
+      "message": "另有 8 个空档按实测节奏补齐(已计入总量, 单列出来便于核对)",
+      "extra": {
+        "filled": 8
+      }
+    }
+  ],
+  "counts_by_code": {
+    "ESTIMATED_MISSES": 7,
+    "FILLED_GAPS": 6
+  }
+}

@@ -1,0 +1,21 @@
+# Python 环境与系统文件
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# 素材与模型权重（体积大，不入库，见 README「素材与权重」）
+跳绳素材/
+data/
+
+# 运行产物：调参脚本与 .log 留痕入库，缓存/视频/图片不入库
+out/tune/cache/
+*.pkl
+*.pt
+*.mp4
+*.avi
+*.png
+*.jpg
+*.jpeg
+out/server.pid
+out/server.log

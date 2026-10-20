@@ -1,0 +1,5357 @@
+{
+  "video": "/Users/windinchen/Desktop/项目任务/多人跳绳计数/跳绳素材/1792480048031.mp4",
+  "fps": 25.0,
+  "width": 2560.0,
+  "height": 1440.0,
+  "frames": 1568,
+  "duration": 62.72,
+  "detector": "跳绳素材/yolo26s-pose.pt",
+  "policy": "jump",
+  "signal_sources": {
+    "2": "ankle",
+    "3": "ankle",
+    "1": "ankle",
+    "4": "ankle",
+    "6": "ankle",
+    "7": "ankle",
+    "8": "ankle",
+    "9": "ankle",
+    "10": "ankle",
+    "11": "ankle",
+    "12": "ankle",
+    "13": "ankle",
+    "15": "ankle",
+    "17": "ankle",
+    "18": "ankle",
+    "19": "ankle",
+    "20": "ankle",
+    "21": "ankle",
+    "22": "ankle"
+  },
+  "participants": 6,
+  "total_jumps": 154,
+  "total_rope_passes": 205,
+  "track_count": 7,
+  "excluded_tracks": [
+    {
+      "track_id": 9,
+      "count": 1,
+      "reason": "仅出现 1.9s, 不足 2.0s"
+    }
+  ],
+  "identity_actions": [
+    {
+      "action": "drop_duplicate",
+      "dropped": 21,
+      "kept": 20,
+      "overlap": 1.0,
+      "dx": 56.6,
+      "dropped_counts_samples": 2
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 19,
+      "kept": 17,
+      "overlap": 1.0,
+      "dx": 60.9,
+      "dropped_counts_samples": 61
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 20,
+      "kept": 15,
+      "overlap": 1.0,
+      "dx": 108.4,
+      "dropped_counts_samples": 80
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 22,
+      "kept": 13,
+      "overlap": 1.0,
+      "dx": 66.7,
+      "dropped_counts_samples": 8
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 13,
+      "kept": 11,
+      "overlap": 1.0,
+      "dx": 1.1,
+      "dropped_counts_samples": 432
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 8,
+      "kept": 3,
+      "overlap": 1.0,
+      "dx": 77.3,
+      "dropped_counts_samples": 664
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 17,
+      "kept": 4,
+      "overlap": 0.993,
+      "dx": 66.9,
+      "dropped_counts_samples": 270
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 6,
+      "kept": 7,
+      "overlap": 0.979,
+      "dx": 130.9,
+      "dropped_counts_samples": 320
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 18,
+      "kept": 2,
+      "overlap": 0.745,
+      "dx": 16.0,
+      "dropped_counts_samples": 77
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 7,
+      "kept": 11,
+      "overlap": 0.739,
+      "dx": 84.5,
+      "dropped_counts_samples": 526
+    },
+    {
+      "action": "drop_duplicate",
+      "dropped": 15,
+      "kept": 2,
+      "overlap": 0.502,
+      "dx": 160.1,
+      "dropped_counts_samples": 645
+    }
+  ],
+  "elapsed_sec": 71.24,
+  "fps_processed": 22.01,
+  "crowding": {
+    "mean_max_iou": 0.0234,
+    "p95_max_iou": 0.1385
+  },
+  "tracking_events": [
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 86,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 103,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 105,
+      "gap_frames": 23
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 120,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 122,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 139,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 146,
+      "gap_frames": 43
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 155,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 162,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 171,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 171,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 183,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 186,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 197,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 200,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 200,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 202,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 210,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 210,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 213,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 220,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 220,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 225,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 231,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 233,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 241,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 248,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 248,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 259,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 259,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 262,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 269,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 269,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 278,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 280,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 295,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 298,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 315,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 317,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 326,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 331,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 338,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 351,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 370,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 389,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 399,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 410,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 415,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 420,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 426,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 426,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 434,
+      "gap_frames": 18
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 442,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 451,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 453,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 457,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 468,
+      "gap_frames": 19
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 472,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 480,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 482,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 492,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 500,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 503,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 511,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 520,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 520,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 536,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 538,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 541,
+      "gap_frames": 18
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 548,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 556,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 569,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 569,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 575,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 579,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 579,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 585,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 585,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 589,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 589,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 591,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 595,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 595,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 600,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 607,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 607,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 612,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 617,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 623,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 632,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 632,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 632,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 634,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 635,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 639,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 639,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 649,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 650,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 650,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 651,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 651,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 660,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 660,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 667,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 668,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 670,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 676,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 676,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 683,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 683,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 684,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 686,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 686,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 693,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 693,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 696,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 696,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 700,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 703,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 703,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 705,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 705,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 705,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 710,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 712,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 712,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 714,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 722,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 6,
+      "frame": 722,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 726,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 731,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 742,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 747,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 748,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 758,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 764,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 765,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 774,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 775,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 781,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 781,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 790,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 797,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 798,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 803,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 808,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 813,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 817,
+      "gap_frames": 19
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 826,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 826,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 829,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 834,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 836,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 839,
+      "gap_frames": 18
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 850,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 853,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 853,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 854,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 857,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 866,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 869,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 869,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 870,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 873,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 879,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 879,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 882,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 15,
+      "frame": 884,
+      "gap_frames": 22
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 886,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 889,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 890,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 890,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 898,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 900,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 900,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 903,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 905,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 911,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 911,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 914,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 921,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 921,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 922,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 925,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 15,
+      "frame": 927,
+      "gap_frames": 43
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 930,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 930,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 930,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 938,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 941,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 941,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 943,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 946,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 954,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 957,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 958,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 962,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 965,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 973,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 973,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 975,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 983,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 985,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 989,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 989,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 992,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1001,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1005,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1005,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 1008,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1015,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1019,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1019,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1021,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 1024,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1029,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1029,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1029,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 1031,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1036,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1036,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1036,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1037,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1040,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1040,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1044,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1044,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1053,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1058,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1060,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1060,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1060,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1068,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1068,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1070,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1071,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1077,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1077,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1077,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1084,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1084,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1090,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1094,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1094,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 1096,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1104,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1104,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1105,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1105,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1106,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1109,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1118,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1118,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1119,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1119,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 18,
+      "frame": 1121,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1128,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1128,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1128,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1129,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1129,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1129,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1130,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1135,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1135,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1135,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1136,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1136,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1136,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1143,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1143,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1143,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1144,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1147,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1150,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1150,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1150,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1151,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1151,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 1156,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1160,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1161,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1161,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1161,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 18,
+      "frame": 1163,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1167,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1167,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1171,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1171,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1171,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1172,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1177,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1177,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1177,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1178,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1178,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1178,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 1179,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 1179,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1183,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1184,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1184,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1184,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1185,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1185,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1185,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 18,
+      "frame": 1190,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1191,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1191,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1191,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1192,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1192,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1192,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 1195,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1198,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1198,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1198,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1199,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1199,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1199,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1199,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1206,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1206,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1206,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1206,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1208,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1208,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 2,
+      "frame": 1212,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1213,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1213,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1213,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1215,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1218,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1218,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1218,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1220,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1220,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1220,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1223,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1225,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1225,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1225,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1227,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1227,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1227,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1231,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1232,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1232,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1232,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1234,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1234,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1234,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1239,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1239,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1239,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1241,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1241,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1241,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 7,
+      "frame": 1244,
+      "gap_frames": 18
+    },
+    {
+      "type": "reid",
+      "track_id": 18,
+      "frame": 1245,
+      "gap_frames": 23
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1246,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1246,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1246,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1247,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1248,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1248,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1248,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1253,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1253,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1253,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1255,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1255,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1255,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1260,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1260,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1260,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1262,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1262,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1262,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1263,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1267,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1267,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1267,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1269,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1269,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1269,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1274,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1274,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1274,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1276,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1276,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1276,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1281,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1281,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1281,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1283,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1283,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1283,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1286,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1290,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1290,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1290,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1297,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1297,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1297,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1304,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1304,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1304,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1308,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1308,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1311,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1311,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1311,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1312,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1318,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1318,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1318,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1328,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1328,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1328,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1328,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1335,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1335,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1335,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1344,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1345,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1345,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1345,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1352,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1352,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1352,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1358,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1358,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1359,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1359,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1359,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1361,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1366,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1366,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1366,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1373,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1373,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1373,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1383,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1383,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1383,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1385,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1390,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1390,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1390,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1400,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1400,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1405,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1407,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1407,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1416,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1416,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1417,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1417,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1417,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1423,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1425,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1425,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1426,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1426,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1426,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1433,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1433,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1433,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1440,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1440,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1441,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1441,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1447,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1447,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1447,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1449,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1450,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1450,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1451,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1451,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1454,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1454,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1461,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1462,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1464,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1464,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1474,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1474,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1475,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1475,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1478,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1479,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1479,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1479,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1483,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1483,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1483,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1489,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1489,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1491,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1491,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1491,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1491,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1495,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1499,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1499,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1499,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1502,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 17,
+      "frame": 1502,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1506,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1506,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1506,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 8,
+      "frame": 1507,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1512,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1513,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1513,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1513,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1518,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1518,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1522,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1522,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 13,
+      "frame": 1529,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1531,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1531,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1532,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1532,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 1,
+      "frame": 1532,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 3,
+      "frame": 1533,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1543,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1543,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1543,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 1547,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 1547,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1550,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1550,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1550,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1557,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 12,
+      "frame": 1557,
+      "gap_frames": 10
+    },
+    {
+      "type": "reid",
+      "track_id": 19,
+      "frame": 1557,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 1561,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 1561,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 11,
+      "frame": 1561,
+      "gap_frames": 17
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1563,
+      "gap_frames": 7
+    },
+    {
+      "type": "reid",
+      "track_id": 4,
+      "frame": 1563,
+      "gap_frames": 7
+    }
+  ],
+  "config": {
+    "classes": [
+      0
+    ],
+    "imgsz": 640,
+    "conf": 0.35,
+    "device": "mps",
+    "match_thresh": 0.28,
+    "match_iou_w": 0.6,
+    "max_age": 15,
+    "min_hits": 3,
+    "reid_window": 45,
+    "reid_dist": 0.9,
+    "merge_gap_frames": 60,
+    "merge_dist_ratio": 0.9,
+    "dup_overlap": 0.5,
+    "dup_dist_ratio": 0.45,
+    "min_track_sec": 2.0,
+    "min_track_visibility": 0.5,
+    "signal_source": "auto",
+    "kp_conf": 0.3,
+    "max_gap": 12,
+    "smooth_win": 3,
+    "baseline_win": 91,
+    "min_rate_hz": 0.5,
+    "max_rate_hz": 3.5,
+    "min_amplitude": 2.0,
+    "amplitude_ratio": 0.004,
+    "snr_k": 3.0,
+    "refractory_ratio": 0.45,
+    "double_under_ratio": 0.62,
+    "gap_ratio": 1.8,
+    "interpolate_gaps": false,
+    "policy": "jump",
+    "warmup_sec": 1.0,
+    "tolerance_sec": 0.15,
+    "tolerance_ratio": 0.4
+  },
+  "tracks": [
+    {
+      "track_id": 1,
+      "first_frame": 2,
+      "last_frame": 1567,
+      "count": 26,
+      "count_rope": 32,
+      "events": [
+        {
+          "frame": 87.5,
+          "time": 3.5,
+          "amplitude": 3.865,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 105.264,
+          "time": 4.2106,
+          "amplitude": 3.38,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 161.464,
+          "time": 6.4586,
+          "amplitude": 2.882,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 216.5,
+          "time": 8.66,
+          "amplitude": 9.46,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 233.5,
+          "time": 9.34,
+          "amplitude": 3.877,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 258.5,
+          "time": 10.34,
+          "amplitude": 4.294,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 274.5,
+          "time": 10.98,
+          "amplitude": 6.792,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 294.5,
+          "time": 11.78,
+          "amplitude": 3.967,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 401.346,
+          "time": 16.0538,
+          "amplitude": 3.442,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 446.33,
+          "time": 17.8532,
+          "amplitude": 6.959,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 500.632,
+          "time": 20.0253,
+          "amplitude": 7.242,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 563.987,
+          "time": 22.5595,
+          "amplitude": 3.177,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 618.5,
+          "time": 24.74,
+          "amplitude": 3.07,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 674.404,
+          "time": 26.9761,
+          "amplitude": 3.038,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 734.468,
+          "time": 29.3787,
+          "amplitude": 2.943,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 772.5,
+          "time": 30.9,
+          "amplitude": 5.463,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 803.5,
+          "time": 32.14,
+          "amplitude": 3.944,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 837.5,
+          "time": 33.5,
+          "amplitude": 4.568,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1018.514,
+          "time": 40.7406,
+          "amplitude": 20.266,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1036.5,
+          "time": 41.46,
+          "amplitude": 21.887,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1083.545,
+          "time": 43.3418,
+          "amplitude": 58.065,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1118.271,
+          "time": 44.7308,
+          "amplitude": 65.149,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1167.5,
+          "time": 46.7,
+          "amplitude": 63.246,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1208.5,
+          "time": 48.34,
+          "amplitude": 67.807,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1238.627,
+          "time": 49.5451,
+          "amplitude": 4.341,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1253.5,
+          "time": 50.14,
+          "amplitude": 4.706,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1293.5,
+          "time": 51.74,
+          "amplitude": 9.439,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1308.5,
+          "time": 52.34,
+          "amplitude": 82.105,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1406.5,
+          "time": 56.26,
+          "amplitude": 63.877,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1436.5,
+          "time": 57.46,
+          "amplitude": 77.453,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1498.445,
+          "time": 59.9378,
+          "amplitude": 4.714,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1538.316,
+          "time": 61.5326,
+          "amplitude": 6.471,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 1.2,
+      "rate_hz": 0.833,
+      "signal_source": "ankle",
+      "visibility": 0.6916,
+      "median_height": 320.64,
+      "snr": 68.76,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 1083,
+        "rhythm_strength": 0.588,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 42,
+        "noise": 0.507,
+        "noise_mad": 3.058,
+        "amplitude_threshold": 2.787,
+        "peak_level_p95": 34.841,
+        "bumps": 6,
+        "estimated_misses": 18,
+        "long_holes": 12,
+        "merged_from": [
+          1
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.8619,
+        "center_x_mean": 1168.3,
+        "duration_sec": 62.64
+      }
+    },
+    {
+      "track_id": 2,
+      "first_frame": 2,
+      "last_frame": 1212,
+      "count": 6,
+      "count_rope": 8,
+      "events": [
+        {
+          "frame": 36.04,
+          "time": 1.4416,
+          "amplitude": 2.101,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 295.5,
+          "time": 11.82,
+          "amplitude": 5.861,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 315.436,
+          "time": 12.6175,
+          "amplitude": 2.165,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 652.5,
+          "time": 26.1,
+          "amplitude": 2.518,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 954.507,
+          "time": 38.1803,
+          "amplitude": 3.1,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1041.5,
+          "time": 41.66,
+          "amplitude": 14.798,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1060.5,
+          "time": 42.42,
+          "amplitude": 64.625,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1125.693,
+          "time": 45.0277,
+          "amplitude": 2.823,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 1.48,
+      "rate_hz": 0.676,
+      "signal_source": "ankle",
+      "visibility": 0.654,
+      "median_height": 381.98,
+      "snr": 28.86,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 792,
+        "rhythm_strength": 0.79,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 11,
+        "noise": 0.075,
+        "noise_mad": 0.601,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 2.156,
+        "bumps": 2,
+        "estimated_misses": 22,
+        "long_holes": 19,
+        "merged_from": [
+          2
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.5437,
+        "center_x_mean": 1828.71,
+        "duration_sec": 48.44
+      }
+    },
+    {
+      "track_id": 3,
+      "first_frame": 2,
+      "last_frame": 1567,
+      "count": 47,
+      "count_rope": 61,
+      "events": [
+        {
+          "frame": 37.5,
+          "time": 1.5,
+          "amplitude": 3.247,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 45.821,
+          "time": 1.8328,
+          "amplitude": 6.556,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 54.063,
+          "time": 2.1625,
+          "amplitude": 5.834,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 63.505,
+          "time": 2.5402,
+          "amplitude": 2.882,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 118.5,
+          "time": 4.74,
+          "amplitude": 5.834,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 126.5,
+          "time": 5.06,
+          "amplitude": 3.443,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 185.45,
+          "time": 7.418,
+          "amplitude": 7.198,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 264.5,
+          "time": 10.58,
+          "amplitude": 5.908,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 274.5,
+          "time": 10.98,
+          "amplitude": 4.955,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 287.5,
+          "time": 11.5,
+          "amplitude": 6.351,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 298.5,
+          "time": 11.94,
+          "amplitude": 5.577,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 311.5,
+          "time": 12.46,
+          "amplitude": 6.334,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 363.133,
+          "time": 14.5253,
+          "amplitude": 2.854,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 383.5,
+          "time": 15.34,
+          "amplitude": 4.284,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 409.593,
+          "time": 16.3837,
+          "amplitude": 4.275,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 493.869,
+          "time": 19.7547,
+          "amplitude": 3.35,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 505.5,
+          "time": 20.22,
+          "amplitude": 3.939,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 596.5,
+          "time": 23.86,
+          "amplitude": 5.51,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 604.0,
+          "time": 24.16,
+          "amplitude": 6.951,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 611.5,
+          "time": 24.46,
+          "amplitude": 13.227,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 621.5,
+          "time": 24.86,
+          "amplitude": 7.604,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 671.339,
+          "time": 26.8536,
+          "amplitude": 7.349,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 680.078,
+          "time": 27.2031,
+          "amplitude": 2.251,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 737.748,
+          "time": 29.5099,
+          "amplitude": 4.063,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 752.362,
+          "time": 30.0945,
+          "amplitude": 6.184,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 820.5,
+          "time": 32.82,
+          "amplitude": 3.24,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 845.5,
+          "time": 33.82,
+          "amplitude": 4.43,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 853.5,
+          "time": 34.14,
+          "amplitude": 2.793,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 863.618,
+          "time": 34.5447,
+          "amplitude": 2.003,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 910.562,
+          "time": 36.4225,
+          "amplitude": 4.25,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 918.654,
+          "time": 36.7462,
+          "amplitude": 4.682,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 942.5,
+          "time": 37.7,
+          "amplitude": 4.096,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 951.546,
+          "time": 38.0618,
+          "amplitude": 3.832,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 988.5,
+          "time": 39.54,
+          "amplitude": 5.463,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1041.5,
+          "time": 41.66,
+          "amplitude": 3.658,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1049.0,
+          "time": 41.96,
+          "amplitude": 3.867,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1057.455,
+          "time": 42.2982,
+          "amplitude": 5.814,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1067.492,
+          "time": 42.6997,
+          "amplitude": 2.133,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1085.5,
+          "time": 43.42,
+          "amplitude": 2.705,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1105.5,
+          "time": 44.22,
+          "amplitude": 3.967,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1140.456,
+          "time": 45.6182,
+          "amplitude": 4.812,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1188.477,
+          "time": 47.5391,
+          "amplitude": 4.34,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1198.293,
+          "time": 47.9317,
+          "amplitude": 5.123,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1214.5,
+          "time": 48.58,
+          "amplitude": 3.186,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1225.5,
+          "time": 49.02,
+          "amplitude": 3.19,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1246.516,
+          "time": 49.8606,
+          "amplitude": 2.335,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1253.574,
+          "time": 50.143,
+          "amplitude": 3.548,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1274.5,
+          "time": 50.98,
+          "amplitude": 2.732,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1282.5,
+          "time": 51.3,
+          "amplitude": 3.544,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1324.462,
+          "time": 52.9785,
+          "amplitude": 3.018,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1343.5,
+          "time": 53.74,
+          "amplitude": 2.394,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1368.542,
+          "time": 54.7417,
+          "amplitude": 3.188,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1376.545,
+          "time": 55.0618,
+          "amplitude": 2.022,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1390.909,
+          "time": 55.6364,
+          "amplitude": 2.88,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1459.92,
+          "time": 58.3968,
+          "amplitude": 3.076,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1474.462,
+          "time": 58.9785,
+          "amplitude": 5.487,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1511.334,
+          "time": 60.4534,
+          "amplitude": 3.179,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1533.618,
+          "time": 61.3447,
+          "amplitude": 6.987,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1542.5,
+          "time": 61.7,
+          "amplitude": 4.333,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1549.5,
+          "time": 61.98,
+          "amplitude": 10.673,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1557.552,
+          "time": 62.3021,
+          "amplitude": 8.158,
+          "confidence": 1.0,
+          "kind": "bump"
+        }
+      ],
+      "period_sec": 0.56,
+      "rate_hz": 1.786,
+      "signal_source": "ankle",
+      "visibility": 0.5683,
+      "median_height": 300.1,
+      "snr": 16.43,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 890,
+        "rhythm_strength": 0.555,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 62,
+        "noise": 0.321,
+        "noise_mad": 2.87,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 5.275,
+        "bumps": 14,
+        "estimated_misses": 53,
+        "long_holes": 27,
+        "merged_from": [
+          3
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.8546,
+        "center_x_mean": 629.3,
+        "duration_sec": 62.64
+      }
+    },
+    {
+      "track_id": 4,
+      "first_frame": 2,
+      "last_frame": 1563,
+      "count": 38,
+      "count_rope": 54,
+      "events": [
+        {
+          "frame": 89.233,
+          "time": 3.5693,
+          "amplitude": 3.472,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 97.485,
+          "time": 3.8994,
+          "amplitude": 4.415,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 143.5,
+          "time": 5.74,
+          "amplitude": 5.044,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 165.438,
+          "time": 6.6175,
+          "amplitude": 5.08,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 173.5,
+          "time": 6.94,
+          "amplitude": 5.101,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 200.472,
+          "time": 8.0189,
+          "amplitude": 6.947,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 207.5,
+          "time": 8.3,
+          "amplitude": 11.077,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 222.34,
+          "time": 8.8936,
+          "amplitude": 10.46,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 230.5,
+          "time": 9.22,
+          "amplitude": 7.107,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 245.461,
+          "time": 9.8184,
+          "amplitude": 5.975,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 254.473,
+          "time": 10.1789,
+          "amplitude": 7.865,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 262.5,
+          "time": 10.5,
+          "amplitude": 6.406,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 288.5,
+          "time": 11.54,
+          "amplitude": 10.374,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 296.5,
+          "time": 11.86,
+          "amplitude": 9.366,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 309.713,
+          "time": 12.3885,
+          "amplitude": 5.063,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 331.836,
+          "time": 13.2734,
+          "amplitude": 2.905,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 388.734,
+          "time": 15.5494,
+          "amplitude": 3.394,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 402.44,
+          "time": 16.0976,
+          "amplitude": 3.805,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 471.5,
+          "time": 18.86,
+          "amplitude": 5.105,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 491.498,
+          "time": 19.6599,
+          "amplitude": 2.615,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 537.0,
+          "time": 21.48,
+          "amplitude": 2.139,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 568.5,
+          "time": 22.74,
+          "amplitude": 15.437,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 660.5,
+          "time": 26.42,
+          "amplitude": 3.595,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 682.799,
+          "time": 27.3119,
+          "amplitude": 12.761,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 770.5,
+          "time": 30.82,
+          "amplitude": 6.952,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 804.504,
+          "time": 32.1801,
+          "amplitude": 2.234,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 814.5,
+          "time": 32.58,
+          "amplitude": 8.25,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 843.548,
+          "time": 33.7419,
+          "amplitude": 5.714,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 876.505,
+          "time": 35.0602,
+          "amplitude": 8.433,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 884.5,
+          "time": 35.38,
+          "amplitude": 8.474,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 975.512,
+          "time": 39.0205,
+          "amplitude": 25.174,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1008.502,
+          "time": 40.3401,
+          "amplitude": 18.101,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1027.5,
+          "time": 41.1,
+          "amplitude": 8.71,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1038.5,
+          "time": 41.54,
+          "amplitude": 10.794,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1055.5,
+          "time": 42.22,
+          "amplitude": 9.844,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1118.5,
+          "time": 44.74,
+          "amplitude": 72.284,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1166.5,
+          "time": 46.66,
+          "amplitude": 3.533,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1175.5,
+          "time": 47.02,
+          "amplitude": 4.178,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1185.5,
+          "time": 47.42,
+          "amplitude": 4.759,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1195.5,
+          "time": 47.82,
+          "amplitude": 10.586,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1204.5,
+          "time": 48.18,
+          "amplitude": 3.457,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1230.482,
+          "time": 49.2193,
+          "amplitude": 3.404,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1237.549,
+          "time": 49.502,
+          "amplitude": 2.27,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1246.5,
+          "time": 49.86,
+          "amplitude": 2.967,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1262.343,
+          "time": 50.4937,
+          "amplitude": 6.277,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1301.553,
+          "time": 52.0621,
+          "amplitude": 5.479,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1315.5,
+          "time": 52.62,
+          "amplitude": 4.392,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1330.5,
+          "time": 53.22,
+          "amplitude": 7.273,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1355.444,
+          "time": 54.2178,
+          "amplitude": 2.493,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1382.5,
+          "time": 55.3,
+          "amplitude": 2.725,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1390.5,
+          "time": 55.62,
+          "amplitude": 3.237,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1415.5,
+          "time": 56.62,
+          "amplitude": 78.377,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1488.5,
+          "time": 59.54,
+          "amplitude": 66.483,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1505.5,
+          "time": 60.22,
+          "amplitude": 31.969,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.68,
+      "rate_hz": 1.471,
+      "signal_source": "ankle",
+      "visibility": 0.5013,
+      "median_height": 321.55,
+      "snr": 37.32,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 783,
+        "rhythm_strength": 0.642,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 59,
+        "noise": 0.484,
+        "noise_mad": 3.451,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 18.045,
+        "bumps": 16,
+        "estimated_misses": 34,
+        "long_holes": 25,
+        "merged_from": [
+          4
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.8804,
+        "center_x_mean": 1407.76,
+        "duration_sec": 62.48
+      }
+    },
+    {
+      "track_id": 9,
+      "first_frame": 265,
+      "last_frame": 311,
+      "count": 1,
+      "count_rope": 1,
+      "events": [
+        {
+          "frame": 302.588,
+          "time": 12.1035,
+          "amplitude": 6.406,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.56,
+      "rate_hz": 1.786,
+      "signal_source": "ankle",
+      "visibility": 0.8085,
+      "median_height": 307.71,
+      "snr": 99.0,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 38,
+        "rhythm_strength": 0.177,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 3,
+        "noise": 0.005,
+        "noise_mad": 0.0,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 5.981,
+        "bumps": 0,
+        "estimated_misses": 0,
+        "long_holes": 0,
+        "merged_from": [
+          9
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.552,
+        "center_x_mean": 2485.44,
+        "duration_sec": 1.88,
+        "excluded": "仅出现 1.9s, 不足 2.0s"
+      }
+    },
+    {
+      "track_id": 11,
+      "first_frame": 384,
+      "last_frame": 1567,
+      "count": 7,
+      "count_rope": 11,
+      "events": [
+        {
+          "frame": 752.5,
+          "time": 30.1,
+          "amplitude": 2.674,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 825.02,
+          "time": 33.0008,
+          "amplitude": 49.187,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 856.5,
+          "time": 34.26,
+          "amplitude": 29.728,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 874.668,
+          "time": 34.9867,
+          "amplitude": 9.349,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 945.5,
+          "time": 37.82,
+          "amplitude": 50.194,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 960.5,
+          "time": 38.42,
+          "amplitude": 10.402,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1041.5,
+          "time": 41.66,
+          "amplitude": 28.463,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1055.5,
+          "time": 42.22,
+          "amplitude": 25.98,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1072.5,
+          "time": 42.9,
+          "amplitude": 15.268,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1155.708,
+          "time": 46.2283,
+          "amplitude": 2.56,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1562.864,
+          "time": 62.5145,
+          "amplitude": 6.705,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 1.28,
+      "rate_hz": 0.781,
+      "signal_source": "ankle",
+      "visibility": 0.6073,
+      "median_height": 384.85,
+      "snr": 99.0,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 719,
+        "rhythm_strength": 0.564,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 12,
+        "noise": 0.087,
+        "noise_mad": 0.994,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 22.443,
+        "bumps": 4,
+        "estimated_misses": 18,
+        "long_holes": 16,
+        "merged_from": [
+          11
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.8168,
+        "center_x_mean": 1784.89,
+        "duration_sec": 47.36
+      }
+    },
+    {
+      "track_id": 12,
+      "first_frame": 554,
+      "last_frame": 1557,
+      "count": 30,
+      "count_rope": 39,
+      "events": [
+        {
+          "frame": 637.5,
+          "time": 25.5,
+          "amplitude": 3.233,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 782.894,
+          "time": 31.3158,
+          "amplitude": 2.661,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 797.5,
+          "time": 31.9,
+          "amplitude": 3.22,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 820.746,
+          "time": 32.8298,
+          "amplitude": 2.603,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 829.611,
+          "time": 33.1844,
+          "amplitude": 4.66,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 853.5,
+          "time": 34.14,
+          "amplitude": 4.461,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 945.184,
+          "time": 37.8074,
+          "amplitude": 3.639,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 988.5,
+          "time": 39.54,
+          "amplitude": 4.032,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1004.497,
+          "time": 40.1799,
+          "amplitude": 3.674,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1033.5,
+          "time": 41.34,
+          "amplitude": 7.385,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1048.496,
+          "time": 41.9398,
+          "amplitude": 16.448,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1056.5,
+          "time": 42.26,
+          "amplitude": 7.415,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1103.5,
+          "time": 44.14,
+          "amplitude": 3.412,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1112.5,
+          "time": 44.5,
+          "amplitude": 2.989,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1148.649,
+          "time": 45.946,
+          "amplitude": 3.188,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1156.574,
+          "time": 46.2629,
+          "amplitude": 3.272,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1171.598,
+          "time": 46.8639,
+          "amplitude": 5.053,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1178.508,
+          "time": 47.1403,
+          "amplitude": 3.525,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1194.248,
+          "time": 47.7699,
+          "amplitude": 3.677,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1222.505,
+          "time": 48.9002,
+          "amplitude": 2.204,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1231.525,
+          "time": 49.261,
+          "amplitude": 5.122,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1239.556,
+          "time": 49.5823,
+          "amplitude": 5.362,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1249.5,
+          "time": 49.98,
+          "amplitude": 5.358,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1286.502,
+          "time": 51.4601,
+          "amplitude": 3.683,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1306.459,
+          "time": 52.2584,
+          "amplitude": 2.637,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1315.335,
+          "time": 52.6134,
+          "amplitude": 2.92,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1336.5,
+          "time": 53.46,
+          "amplitude": 3.663,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1345.5,
+          "time": 53.82,
+          "amplitude": 9.341,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1354.702,
+          "time": 54.1881,
+          "amplitude": 9.096,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1361.5,
+          "time": 54.46,
+          "amplitude": 10.78,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1409.484,
+          "time": 56.3794,
+          "amplitude": 5.079,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1415.717,
+          "time": 56.6287,
+          "amplitude": 8.037,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1426.5,
+          "time": 57.06,
+          "amplitude": 4.181,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1435.5,
+          "time": 57.42,
+          "amplitude": 4.31,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1444.5,
+          "time": 57.78,
+          "amplitude": 5.217,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1454.52,
+          "time": 58.1808,
+          "amplitude": 10.6,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1463.5,
+          "time": 58.54,
+          "amplitude": 3.01,
+          "confidence": 1.0,
+          "kind": "bump"
+        },
+        {
+          "frame": 1510.5,
+          "time": 60.42,
+          "amplitude": 6.777,
+          "confidence": 1.0,
+          "kind": "jump"
+        },
+        {
+          "frame": 1528.492,
+          "time": 61.1397,
+          "amplitude": 5.489,
+          "confidence": 1.0,
+          "kind": "jump"
+        }
+      ],
+      "period_sec": 0.58,
+      "rate_hz": 1.724,
+      "signal_source": "ankle",
+      "visibility": 0.7261,
+      "median_height": 298.6,
+      "snr": 16.02,
+      "breaks": 0,
+      "stats": {
+        "sample_count": 729,
+        "rhythm_strength": 0.792,
+        "period_source": "峰间隔中位数",
+        "period_estimated": true,
+        "coarse_peaks": 39,
+        "noise": 0.331,
+        "noise_mad": 2.5,
+        "amplitude_threshold": 2.0,
+        "peak_level_p95": 5.312,
+        "bumps": 9,
+        "estimated_misses": 27,
+        "long_holes": 12,
+        "merged_from": [
+          12
+        ],
+        "fragments": 1,
+        "track_mean_conf": 0.8644,
+        "center_x_mean": 1074.27,
+        "duration_sec": 40.16
+      }
+    }
+  ],
+  "audit": {
+    "score": 46.5,
+    "verdict": "存疑",
+    "issues": [
+      {
+        "level": "error",
+        "code": "SPLIT_TRACK",
+        "label": "同一人被拆成多条轨迹",
+        "track_id": [
+          1,
+          12
+        ],
+        "message": "轨迹 1 与 12 时间高度重叠且水平位置仅差 94.0px, 很可能是同一个人被数了两次",
+        "extra": {
+          "overlap_frac": 0.641,
+          "dx": 94.03
+        }
+      },
+      {
+        "level": "error",
+        "code": "SPLIT_TRACK",
+        "label": "同一人被拆成多条轨迹",
+        "track_id": [
+          2,
+          11
+        ],
+        "message": "轨迹 2 与 11 时间高度重叠且水平位置仅差 43.8px, 很可能是同一个人被数了两次",
+        "extra": {
+          "overlap_frac": 0.684,
+          "dx": 43.82
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 1,
+        "message": "可见率 0.6916 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 1,
+        "message": "信号出现 12 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 1,
+        "message": "检测到 18 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+        "extra": {
+          "estimated_misses": 18
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 2,
+        "message": "可见率 0.654 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 2,
+        "message": "信号出现 19 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 2,
+        "message": "检测到 22 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+        "extra": {
+          "estimated_misses": 22
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 3,
+        "message": "可见率 0.5683 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 3,
+        "message": "信号出现 27 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 3,
+        "message": "检测到 53 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+        "extra": {
+          "estimated_misses": 53
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 4,
+        "message": "可见率 0.5013 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 4,
+        "message": "信号出现 25 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 4,
+        "message": "检测到 34 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+        "extra": {
+          "estimated_misses": 34
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 11,
+        "message": "可见率 0.6073 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 11,
+        "message": "信号出现 16 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 11,
+        "message": "检测到 18 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+        "extra": {
+          "estimated_misses": 18
+        }
+      },
+      {
+        "level": "warn",
+        "code": "LOW_VISIBILITY",
+        "label": "目标可见率过低",
+        "track_id": 12,
+        "message": "可见率 0.7261 偏低, 断档期靠插值撑信号",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "TRACK_FRAGMENTED",
+        "label": "轨迹频繁断开",
+        "track_id": 12,
+        "message": "信号出现 12 段超过 12 帧的空白(遮挡或跟丢), 这些区间的跳跃不可靠",
+        "extra": {}
+      },
+      {
+        "level": "warn",
+        "code": "ESTIMATED_MISSES",
+        "label": "存在疑似漏计空档",
+        "track_id": 12,
+        "message": "检测到 27 次超过 1.8 倍周期的空档, 疑似漏计(可用 --interpolate-gaps 补齐)",
+        "extra": {
+          "estimated_misses": 27
+        }
+      },
+      {
+        "level": "info",
+        "code": "TRACK_EXCLUDED",
+        "label": "未参与总计数",
+        "track_id": 9,
+        "message": "该轨迹不计入总量: 仅出现 1.9s, 不足 2.0s (其 1 次已剔除)",
+        "extra": {}
+      }
+    ],
+    "counts_by_code": {
+      "SPLIT_TRACK": 2,
+      "LOW_VISIBILITY": 6,
+      "TRACK_FRAGMENTED": 6,
+      "ESTIMATED_MISSES": 6,
+      "TRACK_EXCLUDED": 1
+    }
+  }
+}
