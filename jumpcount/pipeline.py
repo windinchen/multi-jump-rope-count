@@ -156,7 +156,7 @@ def run(
             "mean_max_iou": round(float(np.mean(crowd)), 4) if crowd else 0.0,
             "p95_max_iou": round(float(np.percentile(crowd, 95)), 4) if crowd else 0.0,
         },
-        "tracking_events": tracker.events,
+        "tracking_events": list(tracker.events),
         "config": cfg.to_dict(),
         "tracks": [_track_to_dict(r) for r in results],
     }
@@ -199,6 +199,11 @@ def write_outputs(summary: dict, out_dir: str, save_video: bool = True) -> Dict[
     return paths
 
 
+def counted_track_ids(summary: dict) -> set:
+    """参与判定后仍然计数的轨迹号: 标注视频与 counts.json 必须按同一批人算总量。"""
+    return {trk["track_id"] for trk in summary["tracks"] if trk.get("stats", {}).get("verdict") != "out"}
+
+
 def _render_video(summary: dict, path: str) -> None:
     cap = cv2.VideoCapture(summary["video"])
     fps = summary.get("_render_fps") or summary["fps"] or 30.0
@@ -206,9 +211,12 @@ def _render_video(summary: dict, path: str) -> None:
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     writer = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height))
     running: Dict[int, int] = {}
+    # 被参与判定剔除的路人也出现在画面里, 但不给他们排数字队列: 以前他们的数字一路涨,
+    # 标注视频上看到的总次数比 counts.json 里报出来的多出一截, 复盘时反而以为计数丢了。
+    counted = counted_track_ids(summary)
     queues = {
         trk["track_id"]: [ev["time"] for ev in trk["events"] if ev["kind"] in ("jump", "bump", "interpolated")]
-        for trk in summary["tracks"]
+        for trk in summary["tracks"] if trk["track_id"] in counted
     }
     pointers = {k: 0 for k in queues}
     for frame_index, t, records in summary["_frame_records"]:
@@ -221,6 +229,6 @@ def _render_video(summary: dict, path: str) -> None:
                 running[tid] = running.get(tid, 0) + 1
                 p += 1
             pointers[tid] = p
-        writer.write(draw(frame, records, running, fps, t))
+        writer.write(draw(frame, records, running, fps, t, counted=counted))
     cap.release()
     writer.release()

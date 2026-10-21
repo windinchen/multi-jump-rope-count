@@ -7,12 +7,21 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional, Tuple
+from collections import deque
+from typing import Deque, Dict, List, Optional, Tuple
 
 import numpy as np
 
 from .config import Config
 from .types import Detection
+
+
+# 长跑(摄像头连续开几小时)时这三样必须封顶, 否则单条轨迹的框高列表会涨到几十万,
+# 每帧的 np.median 和内存都会被拖垮。600 帧 = 25fps 下 24s, 比在线信号窗口还长,
+# 中位数取"最近这段"反而更贴合当前距离, 短时复盘的结果与不封顶时一致。
+HEIGHT_HISTORY = 600
+TRACK_HISTORY = 4000   # 参与审计的历史轨迹条数上限
+EVENT_HISTORY = 5000   # 断轨重认领事件条数上限
 
 
 def _geom(box) -> Tuple[float, float, float]:
@@ -62,8 +71,8 @@ class _Track:
         self.frames = 1
         self.missing = 0
         self.conf = float(det.conf)
-        self.heights = [h]
-        self.gaps: List[int] = []
+        self.heights: Deque[float] = deque([h], maxlen=HEIGHT_HISTORY)
+        self.gaps: Deque[int] = deque(maxlen=EVENT_HISTORY)
 
     def median_height(self) -> float:
         """框高中位数: 按轨迹算一次即可, 以前每个"轨迹×检测"对都重算(16 人素材每帧近千次)。"""
@@ -98,10 +107,10 @@ class Tracker:
         self.cfg = cfg
         self.active: List[_Track] = []
         self.finished: List[_Track] = []
-        self.all: List[_Track] = []
+        self.all: Deque[_Track] = deque(maxlen=TRACK_HISTORY)
         self._next_id = 1
         self._known: set = set()
-        self.events: List[dict] = []
+        self.events: Deque[dict] = deque(maxlen=EVENT_HISTORY)
 
     def _score(self, trk: _Track, det: Detection) -> float:
         cx, cy, h = _geom(det.box)
@@ -143,6 +152,10 @@ class Tracker:
             revived.append((trk, pending[di]))
         for di in sorted(used_d, reverse=True):
             pending.pop(di)
+        # 认领就必须把这条轨迹从"已断开"里摘掉: 留在里面, 他下次再断开时同一个对象会被塞回来两次,
+        # 之后一帧里两条重号能把同一个人认领两遍 -> active 里出现两个自己, hits 与框位一帧写两次。
+        for fi in sorted(used_f, reverse=True):
+            self.finished.pop(fi)
         return revived
 
     def update(self, frame: int, dets: List[Detection]) -> List[Tuple[int, Detection]]:
@@ -151,12 +164,16 @@ class Tracker:
         pairs: List[Tuple[_Track, Detection]] = []
 
         # 1) 断轨重认领
+        revived: set = set()
         for trk, det in self._revive(frame, pending):
             trk.update(det)
             self.active.append(trk)
             pairs.append((trk, det))
+            revived.add(id(trk))
 
         # 2) 常规贪心关联
+        # 刚被认领回来的轨迹本轮已经配过一个框, 再让它参与关联会让同一个人同一帧配到两个框:
+        # 框位/框高被写两次, 命中数翻倍, 下游还会把这一刻当成两次起跳。
         # 得分整批算: 16 人同跳时每帧近千个"轨迹×检测"对, 逐对回 Python 比推理还贵
         scored: List[Tuple[float, int, int]] = []
         if self.active and pending:
@@ -176,7 +193,7 @@ class Tracker:
         used_t: set = set()
         used_d: set = set()
         for _, ti, di in scored:
-            if ti in used_t or di in used_d:
+            if ti in used_t or di in used_d or id(self.active[ti]) in revived:
                 continue
             used_t.add(ti)
             used_d.add(di)

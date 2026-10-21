@@ -62,6 +62,7 @@ input[type=range]{padding:0;height:30px;accent-color:var(--accent)}
 .notes{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:7px}
 .notes li{font-size:12px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 11px}
 .notes li.warn{border-color:#5b4a1f;color:#ffe0a3}
+.notes li.err{border-color:#5b2a2a;color:#ffb3b3}
 .events{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;max-height:220px;overflow:auto}
 .events li{display:flex;gap:10px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;border-bottom:1px dashed var(--line);padding-bottom:4px}
 .events li b{color:var(--text)}

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Sequence, Tuple
+from typing import Dict, List, Optional, Sequence, Tuple
 
 import cv2
 import numpy as np
@@ -29,14 +29,21 @@ def draw(
     running: Dict[int, int],
     fps: float,
     time: float,
+    counted: Optional[set] = None,
 ) -> np.ndarray:
+    """标注视频叠加层。
+
+    counted: 参与判定的结果里"计入/低置信计入"的轨迹号。被剔除的路人也画框, 但画灰框且不带数字,
+    否则视频里看着像他也在数, 与 counts.json 的总量对不上。None = 不区分(逐条对照时用)。
+    """
     out = frame.copy()
     h, w = out.shape[:2]
     for track_id, box in items:
         x1, y1, x2, y2 = (int(v) for v in box)
-        color = color_for(track_id)
+        skipped = counted is not None and track_id not in counted
+        color = (150, 150, 150) if skipped else color_for(track_id)
         cv2.rectangle(out, (x1, y1), (x2, y2), color, 2)
-        label = f"#{track_id} x{running.get(track_id, 0)}"
+        label = f"#{track_id}" if skipped else f"#{track_id} x{running.get(track_id, 0)}"
         (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6, 2)
         top = max(0, y1 - th - 6)
         cv2.rectangle(out, (x1, top), (x1 + tw + 8, top + th + 6), color, -1)
@@ -44,7 +51,9 @@ def draw(
     strip_h = 34
     cv2.rectangle(out, (0, h - strip_h), (w, h), (18, 18, 18), -1)
     total = sum(running.values())
-    text = f"t={time:6.2f}s  total={total}"
+    greyed = sum(1 for tid, _ in items if counted is not None and tid not in counted)
+    tail = f"  灰框不计数 {greyed}" if greyed else ""
+    text = f"t={time:6.2f}s  total={total}{tail}"
     cv2.putText(out, text, (10, h - 12), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (235, 235, 235), 2, cv2.LINE_AA)
     return out
 
@@ -80,7 +89,8 @@ def draw_live(frame, tracks, fps, time, show_signal: bool = True, coords_scale: 
             _foot_mark(out, item, (x1, y1, x2, y2), color, scale, strip)
             continue
         cv2.rectangle(out, (x1, y1), (x2, y2), color, max(2, int(2 * scale)))
-        label = f"#{item['id']}  {item['count']}"
+        # 框上的数字与底部总计、页面卡片同口径: 实测 + 按节奏补齐
+        label = f"#{item['id']}  {item['count'] + item.get('filled', 0)}"
         (tw, th), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.6 * scale, max(1, int(2 * scale)))
         top = max(0, y1 - th - 8)
         cv2.rectangle(out, (x1, top), (x1 + tw + 10, top + th + 8), color, -1)
@@ -89,8 +99,13 @@ def draw_live(frame, tracks, fps, time, show_signal: bool = True, coords_scale: 
             _sparkline(out, item["signal"], (x1, y2), (x2, y2), color, spark_h, spark_w)
     cv2.rectangle(out, (0, h - strip), (w, h), (20, 20, 20), -1)
     counting = [t for t in tracks if t.get("participant")]
-    total = sum(t.get("count", 0) for t in counting)
+    # 与页面顶部同一口径: 实测峰 + 按节奏补齐。只算实测的话视频里的总计总比页面少一截,
+    # 复核时会以为两边有一边数错了。
+    total = sum(t.get("count", 0) + t.get("filled", 0) for t in counting)
+    recovered = sum(t.get("recovered", 0) for t in counting)
     text = f"t={time:5.1f}s   人数 {len(tracks)}   计数中 {len(counting)}   总计 {total}"
+    if recovered:
+        text += f"(含回捞 {recovered})"
     cv2.putText(out, text, (int(12 * scale), h - int(14 * scale)), cv2.FONT_HERSHEY_SIMPLEX, 0.8 * scale, (240, 240, 240), max(1, int(2 * scale)), cv2.LINE_AA)
     return out
 

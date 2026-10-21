@@ -29,7 +29,7 @@ from jumpcount.detect import Detection, suppress_duplicates
 from jumpcount.identity import build_slot, consolidate
 from jumpcount.evaluate import _event_metrics, evaluate
 from jumpcount.online import OnlineCounter
-from jumpcount.tracking import Tracker
+from jumpcount.tracking import EVENT_HISTORY, HEIGHT_HISTORY, Tracker
 
 
 def _kp(x: float, y: float, lift: float, conf: float = 0.9) -> np.ndarray:
@@ -690,6 +690,209 @@ class TestDistantLowLift(unittest.TestCase):
         self.assertLessEqual(strict, int(0.6 * self.truth), f"最严一档就数到 {strict}, 门限没起作用")
         self.assertGreaterEqual(loose, int(0.85 * self.truth),
                                f"推到 90 只数到 {loose}(真值 {self.truth}), 等于滑杆没反应")
+
+
+def _pose(cx: float, lift: float, foot: float = 400.0) -> np.ndarray:
+    """整身上移的简化姿态: 头/髋/双脚一起抬, 保证通道判定与双脚同步性都站在"真在跳"这一边。"""
+    kps = np.zeros((17, 3))
+    kps[:, :2] = 1.0
+    kps[:, 2] = 0.9
+    kps[0] = (cx, foot - 270.0 - lift, 0.9)
+    kps[11] = (cx, foot - 150.0 - lift, 0.9)
+    kps[15] = (cx - 30.0, foot - lift, 0.9)
+    kps[16] = (cx + 30.0, foot + 1.0 - lift, 0.9)
+    return kps
+
+
+def _lift_at(frame: int, fps: float, hz: float, amp: float) -> float:
+    if hz <= 0:
+        return 0.0
+    frac = (frame / fps % (1.0 / hz)) * hz
+    return 4 * amp * (frac / 0.55) * (1 - frac / 0.55) if frac <= 0.55 else 0.0
+
+
+class TestAwayAndReturn(unittest.TestCase):
+    """实时页面: 离场一段时间再回来, 已经数到的次数不能作废。"""
+
+    fps = 25.0
+
+    def _observe(self, counter: OnlineCounter, frame: int, cx: float = 360.0, track_id: int = 1,
+                 hz: float = 2.2, amp: float = 35.0) -> None:
+        lift = _lift_at(frame, self.fps, hz, amp)
+        box = (cx - 60.0, 120.0 - lift, cx + 60.0, 420.0 - lift)
+        counter.update(frame, frame / self.fps, [(track_id, box, _pose(cx, lift), 0.9)])
+
+    def _away(self, counter: OnlineCounter, start: int, end: int) -> None:
+        for frame in range(start, end):
+            counter.update(frame, frame / self.fps, [])
+
+    def _total(self, snap: dict) -> int:
+        return snap["count"] + snap["filled"]
+
+    def test_count_survives_a_long_break(self):
+        """失联超过淘汰窗口后计数器会被回收: 回到同一个圈里要把次数接回来。"""
+        counter = OnlineCounter(Config(), self.fps)
+        for frame in range(0, 250):
+            self._observe(counter, frame)
+        before = counter.snapshot(249)[0]
+        self.assertTrue(before["participant"], before["reason"])
+        held = self._total(before)
+        self.assertGreater(held, 15, before)
+        self._away(counter, 250, 750)          # 20s 无人: 计数器与站位都过期
+        self.assertEqual(counter.snapshot(749), [])
+        self.assertGreaterEqual(len(counter.bank), 1, "离场的人没被寄存下来")
+        for frame in range(750, 1000):
+            self._observe(counter, frame, track_id=2)
+        snaps = counter.snapshot(999)
+        self.assertEqual(len(snaps), 1, [s["id"] for s in snaps])
+        self.assertGreaterEqual(self._total(snaps[0]), held, "回来之后累计次数比离场前还少")
+        self.assertGreaterEqual(snaps[0]["carried"], held)
+
+    def test_break_in_another_spot_starts_from_zero(self):
+        """换了个圈重新开始的人不该把上一个人在原地的次数带走。"""
+        counter = OnlineCounter(Config(), self.fps)
+        for frame in range(0, 250):
+            self._observe(counter, frame, cx=360.0)
+        held = self._total(counter.snapshot(249)[0])
+        self._away(counter, 250, 750)
+        for frame in range(750, 850):      # 只跳 4s: 拿到的数明显小于离场前, 才能看出有没有偷接别人的数
+            self._observe(counter, frame, cx=900.0, track_id=2)
+        snaps = counter.snapshot(849)
+        self.assertEqual(len(snaps), 1)
+        self.assertEqual(snaps[0]["carried"], 0, "离得这么远还接走了别人的次数")
+        self.assertLess(self._total(snaps[0]), held)
+
+    def test_walker_leaves_nothing_in_the_bank(self):
+        """被判定成走路的人抖出来的峰不该留在站位上, 替下一个人在数。"""
+        counter = OnlineCounter(Config(), self.fps)
+        for frame in range(0, 400):
+            cx = 300.0 + frame * 6.0
+            lift = _lift_at(frame, self.fps, 1.6, 25.0)
+            box = (cx - 60.0, 120.0 - lift, cx + 60.0, 420.0 - lift)
+            kps = _pose(cx, lift)
+            kps[15] = (cx - 30.0, 400.0 - 30.0 * abs(np.sin(frame * 0.6)), 0.9)
+            kps[16] = (cx + 30.0, 400.0 - 30.0 * abs(np.cos(frame * 0.6)), 0.9)
+            counter.update(frame, frame / self.fps, [(1, box, kps, 0.9)])
+        self.assertFalse(counter.snapshot(399)[0]["participant"])
+        self._away(counter, 400, 700)
+        self.assertEqual(len(counter.bank), 0, "剔除掉的路人把次数留在了站位上")
+
+    def test_bank_can_be_turned_off(self):
+        cfg = Config()
+        cfg.bank_counts = False
+        counter = OnlineCounter(cfg, self.fps)
+        for frame in range(0, 250):
+            self._observe(counter, frame)
+        held = self._total(counter.snapshot(249)[0])
+        self._away(counter, 250, 750)
+        for frame in range(750, 850):
+            self._observe(counter, frame, track_id=2)
+        snap = counter.snapshot(849)[0]
+        self.assertEqual(snap["carried"], 0)
+        self.assertLess(self._total(snap), held)
+
+    def test_reset_clears_the_bank(self):
+        counter = OnlineCounter(Config(), self.fps)
+        for frame in range(0, 250):
+            self._observe(counter, frame)
+        self._away(counter, 250, 750)
+        self.assertGreaterEqual(len(counter.bank), 1)
+        counter.reset()
+        self.assertEqual(len(counter.bank), 0)
+
+
+class TestStaleRhythm(unittest.TestCase):
+    """停下来不跳之后, 不能继续拿旧节奏发放"低置信计入/按节奏补"的资格。"""
+
+    fps = 25.0
+
+    def _observe(self, counter: OnlineCounter, frame: int, hz: float, amp: float) -> None:
+        lift = _lift_at(frame, self.fps, hz, amp)
+        box = (300.0, 120.0 - lift, 420.0, 420.0 - lift)
+        counter.update(frame, frame / self.fps, [(1, box, _pose(360.0, lift), 0.9)])
+
+    def test_rhythm_is_forgotten_after_stopping(self):
+        counter = OnlineCounter(Config(), self.fps)
+        for frame in range(0, int(8 * self.fps)):
+            self._observe(counter, frame, hz=2.2, amp=35.0)
+        mid = counter.snapshot(int(8 * self.fps) - 1)[0]
+        self.assertIsNotNone(mid["rhythm_strength"], "跳了 8s 还没量出节律, 用例前提不成立")
+        self.assertNotEqual(mid["period_source"], "fallback")
+        for frame in range(int(8 * self.fps), int(26 * self.fps)):
+            self._observe(counter, frame, hz=0.0, amp=0.0)
+        settled = counter.snapshot(int(22 * self.fps) - 1)[0]   # 窗口 12s 已经整段换成"站着不动"
+        final = counter.snapshot(int(26 * self.fps) - 1)[0]
+        self.assertIsNone(final["rhythm_strength"], f"窗口里已经没有峰了还留着旧节律强度: {final}")
+        self.assertEqual(final["period_source"], "fallback", final)
+        self.assertIsNone(final["rate_hz"])
+        self.assertEqual(self._total(final), self._total(settled), "站着不动还在继续加数")
+
+    @staticmethod
+    def _total(snap: dict) -> int:
+        return snap["count"] + snap["filled"]
+
+
+class TestTrackingGuards(unittest.TestCase):
+    """跟踪器的两条硬约束: 一条轨迹一帧只配一个框; 长跑不无限吃内存。"""
+
+    @staticmethod
+    def _det(frame: int, cx: float, half: float = 30.0, top: float = 100.0, height: float = 220.0) -> Detection:
+        return Detection(frame, frame / 25.0, (cx - half, top, cx + half, top + height), 0.9)
+
+    def test_a_track_gets_at_most_one_box_per_frame(self):
+        """断轨被认领回来的那一帧, 它不能再参与常规关联去抢旁边那个框。"""
+        tracker = Tracker(Config(min_hits=1, max_age=5, reid_window=60))
+        for frame in range(10):
+            tracker.update(frame, [self._det(frame, 100), self._det(frame, 200), self._det(frame, 300)])
+        for frame in range(10, 17):          # 第三个人断线, 超过 max_age 进了断轨池
+            tracker.update(frame, [self._det(frame, 100), self._det(frame, 200)])
+        pairs = tracker.update(17, [self._det(17, 100), self._det(17, 200), self._det(17, 300), self._det(17, 310)])
+        ids = [tid for tid, _ in pairs]
+        self.assertEqual(len(ids), len(set(ids)), f"同一帧里同一条轨迹配到了两个框: {ids}")
+
+    def test_history_stays_bounded_over_a_long_run(self):
+        tracker = Tracker(Config(min_hits=1))
+        for frame in range(3000):
+            tracker.update(frame, [self._det(frame, 100 + (frame % 3))])
+        self.assertGreaterEqual(len(tracker.all), 1)
+        for trk in tracker.all:
+            self.assertLessEqual(len(trk.heights), HEIGHT_HISTORY, "框高历史没封顶, 长跑会把内存吃光")
+        self.assertLessEqual(len(tracker.events), EVENT_HISTORY)
+        self.assertGreater(tracker.all[0].hits, HEIGHT_HISTORY, "用例前提: 这条轨迹得活过封顶窗口")
+        self.assertGreater(tracker.all[0].median_height(), 0.0)
+
+    def test_a_revived_track_leaves_the_broken_pool(self):
+        """认领回来的轨迹要从断轨池里摘掉: 否则他下次再断开, 同一个对象会在池里出现两次。"""
+        tracker = Tracker(Config(min_hits=3, max_age=5, reid_window=60))
+        for frame in range(0, 10):
+            tracker.update(frame, [self._det(frame, 100)])
+        for frame in range(10, 20):
+            tracker.update(frame, [])
+        self.assertEqual(len(tracker.finished), 1)
+        tracker.update(20, [self._det(20, 100)])
+        self.assertEqual(len(tracker.finished), 0, "已经认领回来的轨迹还留在断轨池里")
+        for frame in range(21, 31):
+            tracker.update(frame, [])
+        self.assertGreaterEqual(len(tracker.finished), 1, "用例前提: 他又断开了一次")
+        self.assertEqual(len(tracker.finished), len({id(t) for t in tracker.finished}),
+                         f"同一条轨迹在断轨池里留下了 {len(tracker.finished)} 个引用")
+
+    def test_duplicate_boxes_cannot_revive_the_same_track_twice(self):
+        """第二次断开后同一帧里出现两个重合框(检测器重复框): 认领只能发生一次, 轨迹号不能重号。"""
+        tracker = Tracker(Config(min_hits=3, max_age=5, reid_window=60))
+        for frame in range(0, 10):
+            tracker.update(frame, [self._det(frame, 100)])
+        for frame in range(10, 20):
+            tracker.update(frame, [])
+        tracker.update(20, [self._det(20, 100)])
+        for frame in range(21, 31):
+            tracker.update(frame, [])
+        self.assertGreaterEqual(len(tracker.finished), 1, "用例前提: 断轨池里得有他")
+        pairs = tracker.update(31, [self._det(31, 100), self._det(31, 104)])
+        ids = [tid for tid, _ in pairs]
+        self.assertEqual(len(ids), len(set(ids)), f"同一个人被认领了两遍: {ids}")
+        self.assertEqual(len(tracker.active), len({id(t) for t in tracker.active}),
+                         "active 里出现了两个同一条轨迹")
 
 
 if __name__ == "__main__":

@@ -23,9 +23,9 @@ NUMERIC = {"conf": float, "imgsz": int, "snr_k": float, "peak_frac": float, "flo
 
 class Handler(BaseHTTPRequestHandler):
     engine: Optional[LiveEngine] = None
-    sources = []
     scan_dirs: list = []
     protocol_version = "HTTP/1.1"
+    STREAM_IDLE_SEC = 3.0   # 采集线程停了多久之后关掉这条流
 
     def log_message(self, fmt, *args):  # 关掉逐请求日志, 保持终端干净
         return
@@ -78,7 +78,10 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         route = urlparse(self.path).path
-        length = int(self.headers.get("Content-Length") or 0)
+        try:
+            length = max(0, int(self.headers.get("Content-Length") or 0))
+        except ValueError:  # 头部被别的客户端/探针写坏: 当成没有正文处理, 不要让这条请求抛异常
+            length = 0
         raw = self.rfile.read(length) if length else b"{}"
         try:
             payload = json.loads(raw.decode("utf-8") or "{}")
@@ -101,7 +104,11 @@ class Handler(BaseHTTPRequestHandler):
                 kwargs["min_track_visibility"] = float(payload["min_visibility"])
             if payload.get("device"):
                 kwargs["device"] = str(payload["device"])
-            self.engine.control(action, source=payload.get("source"), **kwargs)
+            try:
+                self.engine.control(action, source=payload.get("source"), **kwargs)
+            except ValueError as exc:  # 指令拼错/参数越界: 必须回错误, 否则页面以为已经生效了
+                self._json({"error": str(exc)}, 400)
+                return
             self._json(self.engine.snapshot())
         else:
             self._send(404, b"not found", "text/plain; charset=utf-8")
@@ -123,6 +130,7 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.close_connection = True
         last = -1
+        idle_since = 0.0
         try:
             while not self.engine.stop_flag.is_set():
                 if self.engine.frame_id != last and self.engine.jpeg:
@@ -131,8 +139,17 @@ class Handler(BaseHTTPRequestHandler):
                     self.wfile.write(b"--frame\r\nContent-Type: image/jpeg\r\nContent-Length: %d\r\n\r\n" % len(blob))
                     self.wfile.write(blob)
                     self.wfile.write(b"\r\n")
+                    idle_since = 0.0
                 else:
                     time.sleep(0.02)
+                    # 采集线程已经退出(摄像头被拔、素材解不出画面): 这条流再也等不到新帧。
+                    # 浏览器对同一主机的并发连接只有 6 条, 攒下一堆死流会让整个页面发不出请求。
+                    if not self.engine.feeding():
+                        idle_since = idle_since or time.time()
+                        if time.time() - idle_since > self.STREAM_IDLE_SEC:
+                            break
+                    else:
+                        idle_since = 0.0
         except (BrokenPipeError, ConnectionResetError):
             pass
         finally:
@@ -172,8 +189,6 @@ def serve(args) -> int:
     engine.start()
     Handler.engine = engine
     Handler.scan_dirs = [str(d) for d in (args.scan or [])]
-    Handler.sources = list_sources(scan_dirs=Handler.scan_dirs,
-                                   extra=[args.source] if args.source and not str(args.source).isdigit() else None)
 
     try:
         server = ThreadingHTTPServer((args.host, args.port), Handler)

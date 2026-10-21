@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import math
+from collections import OrderedDict
 from typing import Deque, Dict, List, Optional, Set, Tuple
 
 import numpy as np
@@ -68,6 +69,7 @@ class TrackCounter:
         self.rhythm_strength: Optional[float] = None
         self.last_peak_frame: Optional[float] = None  # 上一个评估过的峰(含热身期跳过的), 空档判定的参考
         self.recovered_frames: Set[int] = set()  # 本次窗口里属于回捞的峰下标(窗口每次重算)
+        self.carry_count = 0  # 上一次离场时寄存下来、这次接回来的次数: 与本轮实测分开显示
         self.sync_n = 0
         self.sync_a = 0.0
         self.sync_b = 0.0
@@ -213,10 +215,14 @@ class TrackCounter:
         amp_thr = amplitude_threshold(noise, peak_level, self.height, self.cfg)
         hard_min = max(2, int(round(self.fps / self.cfg.max_rate_hz)))
         coarse = sg.find_peaks(detrended, hard_min, amp_thr, 0.8 * amp_thr)
-        if len(coarse) >= 3:
-            spacing = float(np.median(np.diff(coarse)))
-            if hard_min <= spacing <= self.fps / self.cfg.min_rate_hz:
-                self.period_frames = spacing
+        spacing = float(np.median(np.diff(coarse))) if len(coarse) >= 3 else 0.0
+        if hard_min <= spacing <= self.fps / self.cfg.min_rate_hz:
+            self.period_frames = spacing
+        elif len(coarse) < 3 and int(valid.sum()) >= int(0.9 * self.window):
+            # 窗口已经装满(约 12s 信号)却连三个峰都数不出来: 节奏不再成立, 要把周期忘掉。
+            # 以前周期一旦估出来就永远留着, 人早就停下不跳了,"节奏清楚"的资格还在往下发,
+            # 低置信计入、按节奏补、包络回捞都据此继续出数, 停跳的人会被继续加数。
+            self.period_frames = None
         period = self.period_frames or hard_min / self.cfg.refractory_ratio
         min_distance = max(hard_min, int(round(self.cfg.refractory_ratio * period)))
         peaks = sg.find_peaks(detrended, min_distance, amp_thr, 0.8 * amp_thr)
@@ -234,6 +240,9 @@ class TrackCounter:
             intervals = np.diff(peaks)
             self.rhythm_strength = round(float(np.clip(
                 1.0 - np.median(np.abs(intervals - period)) / max(period, 1e-6), 0.0, 1.0)), 3)
+        else:
+            # 与周期同理: 这一窗口的峰不够, 上一个窗口量出来的节律强度不能继续作数
+            self.rhythm_strength = None
 
         # 确认延迟取一个跳跃周期: 峰值必须已经完整下落才承认, 兼顾实时性与稳定性
         guard = max(self.guard, int(round(period)))
@@ -339,7 +348,9 @@ class TrackCounter:
             "height_cv": self.height_cv(),
             # 双脚同步性是"漂移的真人 vs 路人"唯一的反证, 不给判定层就等于实时链路只能剔除不能降级
             "ankle_sync": self.sync_value(),
-            "signal_source": self.channel_used or "none",
+            # 这里留空而不是写 "none": snapshot 里要在没做过通道择优时退回"实际用过最多的那条通道"。
+            # 写成非空的 "none" 会把那道退回逻辑挡掉, 页面上"信号"一栏永远是 none。
+            "signal_source": self.channel_used or "",
             "channel_scores": {name: {"rhythm": v[0], "peaks": v[1], "coverage": v[2]}
                                for name, v in self.channel_scores.items()},
         }
@@ -352,6 +363,20 @@ class TrackCounter:
         mean = self.height_sum / self.height_n
         var = max(0.0, self.height_sum2 / self.height_n - mean * mean)
         return round(float(np.sqrt(var) / max(mean, 1e-6)), 3)
+
+    def carry_forward(self, carry: dict) -> None:
+        """把上次离场时寄存的次数接回来: 计数器被淘汰不等于他跳过的次数作废。
+
+        只接累计量, 信号缓冲/覆盖率/相关性都保持新轨迹的观测: 接回来的必须是"这个人自己跳的",
+        不能把上一个人的可见率、双脚同步性一起继承过来替新证据背书。
+        """
+        self.count += int(carry.get("count", 0))
+        self.filled += int(carry.get("filled", 0))
+        self.recovered += int(carry.get("recovered", 0))
+        self.rope += int(carry.get("rope", 0))
+        self.carry_count = int(carry.get("count", 0)) + int(carry.get("filled", 0))
+        if self.last_jump_time is None and carry.get("last_jump_time") is not None:
+            self.last_jump_time = carry["last_jump_time"]
 
     # ---- 覆盖率: 只统计"人在画面里"的那些段 ----
     def _coverage(self) -> Tuple[int, int]:
@@ -377,6 +402,7 @@ class TrackCounter:
             "filled": self.filled,
             "recovered": self.recovered,
             "total_count": self.count + self.filled,
+            "carried": self.carry_count,
             "rope": self.rope,
             "participant": verdict != OUT,
             "reason": reason,
@@ -560,6 +586,9 @@ class OnlineCounter:
         self.tracks: Dict[int, TrackCounter] = {}
         self.log: Deque[dict] = Deque(maxlen=120)
         self.seats = SeatBook(cfg) if cfg.slot_identity else None
+        # 站位 -> 离场时寄存的累计量。计数器被淘汰后总次数会倒退, 出去喘口气回来的人还得从 0 数起,
+        # 这里把"他确实跳过的次数"留在站位上, 下一个人站在同一个圈里才接得走。
+        self.bank: "OrderedDict[int, dict]" = OrderedDict()
 
     def get(self, track_id: int) -> TrackCounter:
         if track_id not in self.tracks:
@@ -576,7 +605,12 @@ class OnlineCounter:
             if previous is None or conf > previous[3]:
                 claimed[key] = (track_id, box, keypoints, conf)
         for key, (track_id, box, keypoints, conf) in claimed.items():
+            fresh = key not in self.tracks
             counter = self.get(key)
+            if fresh and self.cfg.bank_counts:
+                carry = self._take_bank(frame, box)
+                if carry:
+                    counter.carry_forward(carry)
             counter.observe(frame, box, keypoints, conf)
             counter.box = [round(float(v), 1) for v in box]
             if self.seats:
@@ -589,10 +623,75 @@ class OnlineCounter:
         expire = max(self.cfg.max_age * 4, self.cfg.slot_keep_frames if self.seats else 0)
         stale = [tid for tid, c in self.tracks.items() if c.last_frame is not None and frame - c.last_frame > expire]
         for tid in stale:
-            self.tracks.pop(tid, None)
+            counter = self.tracks.pop(tid)
+            if self.cfg.bank_counts:
+                self._retire_to_bank(tid, counter, frame)
+        self._drop_stale_bank(frame)
         if self.seats:
             self.seats.prune(frame)
         return emitted
+
+    # ---- 离场寄存 ----
+    def _retire_to_bank(self, key: int, counter: TrackCounter, frame: int) -> None:
+        """被淘汰的计数器里, 只有"判定确实在跳绳"的人才值得把次数留在站位上。"""
+        if not counter.box:
+            return
+        if counter.count + counter.filled < self.cfg.min_count_provisional:
+            return
+        verdict, _ = judge_detail(counter.stats or {}, self.cfg)
+        if verdict == OUT:
+            return
+        box = counter.box
+        self.bank.pop(key, None)
+        self.bank[key] = {
+            "cx": (float(box[0]) + float(box[2])) / 2.0,
+            "bottom": float(box[3]),
+            "height": max(1.0, float(box[3]) - float(box[1])),
+            "count": counter.count, "filled": counter.filled,
+            "recovered": counter.recovered, "rope": counter.rope,
+            "last_jump_time": counter.last_jump_time, "frame": frame,
+        }
+        while len(self.bank) > max(1, int(self.cfg.bank_max)):
+            self.bank.popitem(last=False)
+
+    def _take_bank(self, frame: int, box) -> Optional[dict]:
+        """新开的计数器正站在一个寄存过的圈里: 把上一次留下的次数接走。
+
+        认领条件与站位本身一致(位置距离/框高倍数), 并且要求那个位置当下没有别的人在跳,
+        否则会把寄存的次数塞给一个正站在旁边的人。
+        """
+        keep_frames = int(self.cfg.bank_keep_sec * self.fps)
+        cx = (float(box[0]) + float(box[2])) / 2.0
+        bottom = float(box[3])
+        height = max(1.0, float(box[3]) - float(box[1]))
+        picked, best = None, float("inf")
+        busy = self._position_busy(frame, box)
+        for key, entry in self.bank.items():
+            if frame - entry["frame"] > keep_frames:
+                continue
+            ref = max(1.0, min(height, entry["height"]))
+            if max(height, entry["height"]) / ref > self.cfg.slot_height_ratio:
+                continue
+            if busy:
+                continue
+            score = math.hypot(cx - entry["cx"], 0.7 * (bottom - entry["bottom"])) / ref
+            if score > self.cfg.slot_dist_ratio or score >= best:
+                continue
+            picked, best = key, score
+        return self.bank.pop(picked) if picked is not None else None
+
+    def _position_busy(self, frame: int, box) -> bool:
+        for other in self.tracks.values():
+            if other.last_frame is None or frame - other.last_frame > max(2, int(self.fps)):
+                continue
+            if other.box and box_iou(other.box, box) >= self.cfg.slot_overlap_iou:
+                return True
+        return False
+
+    def _drop_stale_bank(self, frame: int) -> None:
+        keep_frames = int(self.cfg.bank_keep_sec * self.fps)
+        for key in [k for k, entry in self.bank.items() if frame - entry["frame"] > keep_frames]:
+            self.bank.pop(key, None)
 
     def _accumulate_sync(self, counter: TrackCounter, keypoints) -> None:
         if keypoints is None:
@@ -619,5 +718,6 @@ class OnlineCounter:
     def reset(self) -> None:
         self.tracks.clear()
         self.log.clear()
+        self.bank.clear()
         if self.seats:
             self.seats = SeatBook(self.cfg)

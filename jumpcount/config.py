@@ -89,6 +89,10 @@ class Config:
     dup_iou_min: float = 0.35      # 重复轨迹在重叠帧上的框重叠下限: 并排站的人水平距离也近, 只按距离判重会把真人并掉
     min_track_sec: float = 2.0     # 短于此长度的轨迹不参与总计数
     min_track_visibility: float = 0.5
+    # ---- 离场寄存: 计数器被淘汰时把已经数到的次数留在站位上 ----
+    bank_counts: bool = True       # 关掉即退回"计数器淘汰就把这段计数丢掉"
+    bank_keep_sec: float = 120.0   # 站位无人超过这么久才真的忘记他寄存的次数: 出去喘口气回来的人不再从 0 数起
+    bank_max: int = 32             # 同时寄存的站位条数(按最久未用淘汰), 防止摄像头长跑堆积
 
     # ---- 站位身份(实时页面: 固定机位下用站位当身份) ----
     slot_identity: bool = True     # 检测闪烁把一个人拆成多条轨迹时, 按站位接回同一个人

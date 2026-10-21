@@ -69,8 +69,8 @@ def cmd_run(args) -> int:
         cfg.conf = args.conf
     if args.max_rate:
         cfg.max_rate_hz = args.max_rate
-    if args.interpolate_gaps:
-        cfg.interpolate_gaps = True
+    if getattr(args, "interpolate_gaps", None) is not None:
+        cfg.interpolate_gaps = bool(args.interpolate_gaps)
     from .detect import build_detector
 
     detector = build_detector(args.weights, cfg, kind=args.detector)
@@ -234,7 +234,9 @@ def build_parser() -> argparse.ArgumentParser:
     r.add_argument("--signal", choices=["auto", "ankle", "hip", "head", "box_bottom", "box_center"], default=None)
     r.add_argument("--conf", type=float, default=None)
     r.add_argument("--max-rate", type=float, default=None)
-    r.add_argument("--interpolate-gaps", action="store_true", help="按节奏补齐疑似漏计空档")
+    # 默认就是开的, 以前只有 store_true 等于"只能开不能关", 想关只能去改配置文件
+    r.add_argument("--interpolate-gaps", dest="interpolate_gaps", action=argparse.BooleanOptionalAction,
+                   default=None, help="按节奏补齐疑似漏计空档(默认开, 用 --no-interpolate-gaps 关掉)")
     r.add_argument("--max-frames", type=int, default=None)
     r.add_argument("--no-video", action="store_true", help="不输出标注视频")
     r.add_argument("--quiet", action="store_true")
