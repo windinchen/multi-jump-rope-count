@@ -1,0 +1,36 @@
+=== local_period_quantile=10 ===
+离线 计入 4567 + 低置信 394 = 4961 / 应有 7097 -> 完整率 0.699
+实时链路 5089 次, 在跳绳 70 人;  剔除但仍数到 281, 虚高(>1.05) 0 条
+回捞 528 次; 双计特征: 间隔 < 0.7 周期的相邻峰 107/4460 = 2.40%; 回捞峰自身双计 2/517 = 0.39%
+耗时: 跟踪 3.3 ms/帧(中位), 离线计数 6.7 ms/帧, 实时链路 4.6 ms/帧(含检测输入)
+=== local_period_quantile=15 ===
+离线 计入 4542 + 低置信 394 = 4936 / 应有 7097 -> 完整率 0.696
+实时链路 5054 次, 在跳绳 70 人;  剔除但仍数到 277, 虚高(>1.05) 0 条
+回捞 528 次; 双计特征: 间隔 < 0.7 周期的相邻峰 107/4460 = 2.40%; 回捞峰自身双计 2/517 = 0.39%
+耗时: 跟踪 3.3 ms/帧(中位), 离线计数 6.5 ms/帧, 实时链路 4.5 ms/帧(含检测输入)
+=== local_period_quantile=10 local_period_window=16 ===
+Traceback (most recent call last):
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 171, in <module>
+    main()
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 167, in main
+    print(format_metrics(evaluate(parse_overrides(sys.argv[1:]))))
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 63, in evaluate
+    res = count_track(slot.track_id, slot.samples, cfg, fps)
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/jumpcount/counter.py", line 849, in count_track
+    scale = min(max(float(np.percentile(gaps_hist[-local_n:], cfg.local_period_quantile)),
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/.venv/lib/python3.9/site-packages/numpy/lib/_function_base_impl.py", line 4271, in percentile
+    q = np.true_divide(q, a.dtype.type(100) if a.dtype.kind == "f" else 100)
+TypeError: ufunc 'divide' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+=== local_period_quantile=10 local_period_window=6 ===
+Traceback (most recent call last):
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 171, in <module>
+    main()
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 167, in main
+    print(format_metrics(evaluate(parse_overrides(sys.argv[1:]))))
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 63, in evaluate
+    res = count_track(slot.track_id, slot.samples, cfg, fps)
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/jumpcount/counter.py", line 849, in count_track
+    scale = min(max(float(np.percentile(gaps_hist[-local_n:], cfg.local_period_quantile)),
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/.venv/lib/python3.9/site-packages/numpy/lib/_function_base_impl.py", line 4271, in percentile
+    q = np.true_divide(q, a.dtype.type(100) if a.dtype.kind == "f" else 100)
+TypeError: ufunc 'divide' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''

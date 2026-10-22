@@ -1,0 +1,24 @@
+条数 104  主通道口径 4793  any并集 5589 (+796)  2/投票 4884 (+91)
+  基础: 双计特征均值 4.120%  CV均值 0.642
+  any : 双计特征均值 0.000%  CV均值 0.516
+  投票: 双计特征均值 0.000%  CV均值 0.617
+
+投票口径增益最大的 8 条:
+  179023471330 #9    in           主head       基础 31   any 94   投票 47   各通道 {'ankle': 39, 'box_bottom': 67, 'head': 31, 'hip': 43} 双计 0.00%->0.00%
+  179023471330 #14   in           主head       基础 25   any 39   投票 39   各通道 {'ankle': 76, 'box_bottom': 85, 'head': 25, 'hip': 48} 双计 0.00%->0.00%
+  179023471330 #1    in           主head       基础 119  any 136  投票 132  各通道 {'ankle': 110, 'box_bottom': 84, 'head': 119, 'hip': 129} 双计 0.00%->0.00%
+  179023428267 #18   in           主head       基础 11   any 21   投票 20   各通道 {'ankle': 72, 'box_bottom': 69, 'head': 11, 'hip': 28} 双计 0.00%->0.00%
+  179023484385 #4    in           主head       基础 88   any 100  投票 96   各通道 {'ankle': 76, 'box_bottom': 69, 'head': 88, 'hip': 93} 双计 0.00%->0.00%
+  179023484385 #5    in           主ankle      基础 70   any 82   投票 78   各通道 {'ankle': 70, 'box_bottom': 58, 'head': 79, 'hip': 79} 双计 0.00%->0.00%
+  f4b3e03db8a7 #6    in           主ankle      基础 28   any 39   投票 36   各通道 {'ankle': 29, 'box_bottom': 35, 'head': 37, 'hip': 35} 双计 3.57%->0.00%
+  179006213119 #2    in           主head       基础 115  any 131  投票 122  各通道 {'ankle': 101, 'box_bottom': 97, 'head': 115, 'hip': 125} 双计 0.00%->0.00%
+
+投票口径损失最大的 8 条:
+  179006213119 #11   in           主head       基础 37   any 55   投票 17   各通道 {'ankle': 38, 'head': 37, 'hip': 21}
+  179023428267 #23   in           主ankle      基础 40   any 51   投票 28   各通道 {'ankle': 40, 'box_bottom': 10, 'head': 24, 'hip': 28}
+  179023428267 #10   in           主head       基础 77   any 97   投票 68   各通道 {'ankle': 58, 'box_bottom': 55, 'head': 80, 'hip': 42}
+  179023484385 #22   provisional  主hip        基础 27   any 39   投票 19   各通道 {'ankle': 30, 'box_bottom': 13, 'head': 8, 'hip': 29}
+  179023471330 #10   in           主hip        基础 71   any 95   投票 63   各通道 {'ankle': 74, 'box_bottom': 19, 'head': 50, 'hip': 73}
+  179023428267 #12   in           主hip        基础 38   any 49   投票 30   各通道 {'ankle': 30, 'box_bottom': 22, 'head': 6, 'hip': 41}
+  179023484385 #15   provisional  主ankle      基础 33   any 40   投票 26   各通道 {'ankle': 34, 'box_bottom': 14, 'head': 38, 'hip': 13}
+  179023484385 #30   provisional  主ankle      基础 6    any 5    投票 0    各通道 {'ankle': 7}

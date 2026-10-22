@@ -52,20 +52,40 @@ def hf_sigma(values: np.ndarray) -> float:
     return float(1.4826 * np.median(np.abs(diff - np.median(diff))) / np.sqrt(2.0))
 
 
+def autocorr(values: np.ndarray) -> np.ndarray:
+    """归一化自相关曲线 (lag 0..n-1)。分母是 lag 0 的能量, 所以峰值不超过 1。"""
+    x = values - values.mean()
+    n = x.size
+    if n < 8:
+        return np.zeros(max(n, 1))
+    spec = np.fft.rfft(x, n=2 * n)
+    ac = np.fft.irfft(spec * np.conj(spec))[:n]
+    if ac[0] <= 0:
+        return np.zeros(n)
+    return ac / ac[0]
+
+
+def autocorr_clarity(values: np.ndarray, lag: int) -> float:
+    """在"已经定下来的周期"这一格上量节律清晰度: 信号真的每隔 lag 帧重复一次, 这个值就高。
+
+    与 autocorr_period 的区别是刻意的: 后者取带内最大值, 而最大值几乎总被最短滞后钉住
+    (噪声本身就带一两个帧的自相关), 于是"节律强度"实际上量的是信号平不平滑, 不是有没有节奏。
+    """
+    if lag <= 0:
+        return 0.0
+    ac = autocorr(values)
+    return float(ac[lag]) if lag < ac.size else 0.0
+
+
 def autocorr_period(
     values: np.ndarray, fps: float, min_hz: float, max_hz: float
 ) -> Tuple[Optional[float], float]:
     """用自相关估计主周期, 返回 (周期秒, 归一化强度)。"""
-    x = values - values.mean()
-    n = x.size
+    ac = autocorr(values)
+    n = ac.size
     if n < 8:
         return None, 0.0
-    spec = np.fft.rfft(x, n=2 * n)
-    ac = np.fft.irfft(spec * np.conj(spec))[:n]
-    if ac[0] <= 0:
-        return None, 0.0
-    ac = ac / ac[0]
-    lo = max(2, int(round(fps / max_hz)))
+    lo = max(2, int(fps / max_hz))   # 向下取整, 与计数侧同源: 名义频率上限要真的取得到
     hi = min(n - 1, int(round(fps / min_hz)))
     if hi <= lo:
         return None, 0.0
@@ -148,6 +168,38 @@ def find_peaks(
         if all(abs(p - q) >= min_distance for q in kept):
             kept.append(p)
     return sorted(kept)
+
+
+def merge_close_peaks(values: np.ndarray, peaks: List[int], min_distance: int,
+                      valley_frac: float, amp_thr: float) -> Tuple[List[int], set]:
+    """把靠得太近的峰分成"同一次起跳"与"真的两次起跳", 判据是中间有没有落回地面。
+
+    只按最短间隔一刀切会在快跳时吃掉真起跳: 25fps 下 3.5Hz 的周期只有 7 帧,
+    0.6 倍周期的不应期(4 帧)加一点点帧号抖动, 连着几次就把真峰当重复峰丢了。
+    起跳的物理特征是"腾空→落地→再腾空": 两次起跳之间信号必须回到地面附近,
+    而同一次起跳里绳过两次(双摇)时脚没落地, 谷底一直停在高位。
+    落回的标准用计数阈值本身量: 谷底 <= valley_frac * amp_thr 才算真落地, 两个峰都保留;
+    否则合并成一个。用阈值而不是峰高做尺子, 是因为纯噪声里相邻两峰之间"总是"有个深谷
+    (噪声谷底相对自己的峰本来就低), 拿峰高当尺子会给静止抖动发资格。
+
+    返回 (保留的峰, 靠"落回地面"才保留下来的峰): 后者要单独交给双摇判据,
+    否则它们会被双摇规则按同样的间隔再扣一次, 等于什么都没救回来。
+    """
+    kept: List[int] = []
+    landing: set = set()
+    for p in peaks:
+        if not kept or p - kept[-1] >= min_distance:
+            kept.append(p)
+            continue
+        prev = kept[-1]
+        # 取 [prev, p] 闭区间: 两峰之间没有更低的点时谷底就等于较小的这峰, 必然合并
+        valley = float(np.min(values[prev:p + 1]))
+        if amp_thr > 0.0 and valley <= valley_frac * amp_thr:
+            kept.append(p)
+            landing.add(p)
+        elif float(values[p]) > float(values[prev]):
+            kept[-1] = p
+    return kept, landing
 
 
 def bandpass(values: np.ndarray, fps: float, low_hz: float, high_hz: float) -> np.ndarray:

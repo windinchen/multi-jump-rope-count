@@ -124,6 +124,9 @@ def run(
     counted = [r for r in results if "excluded" not in r.stats]
     confident = [r for r in counted if r.stats.get("verdict") != PROVISIONAL]
     expected = round(float(sum(r.stats.get("expected_count", 0.0) for r in counted)), 1)
+    # 另一个口径: 只算"人真在画面里的那段"应有的次数(见 counter.count_track 里的注释),
+    # 墙钟口径的 expected_by_rhythm 继续用于虚高核对, 两个都写进 counts.json。
+    expected_visible = round(float(sum(r.stats.get("expected_visible", 0.0) for r in counted)), 1)
 
     elapsed = _time.time() - started
     summary = {
@@ -146,6 +149,11 @@ def run(
         "expected_by_rhythm": expected,
         "rhythm_coverage": (round(int(sum(r.count + r.stats.get("filled", 0) for r in counted)) / expected, 3)
                             if expected > 0 else 0.0),
+        "expected_by_rhythm_visible": expected_visible,
+        "rhythm_coverage_visible": (round(int(sum(r.count + r.stats.get("filled", 0) for r in counted))
+                                          / expected_visible, 3) if expected_visible > 0 else 0.0),
+        "filled_by_phase": int(sum(r.stats.get("fill_phase", 0) for r in counted)),
+        "fills_capped": int(sum(r.stats.get("fill_capped", 0) for r in counted)),
         "track_count": len(results),
         "excluded_tracks": excluded,
         "provisional_tracks": provisional,

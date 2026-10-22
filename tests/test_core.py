@@ -63,7 +63,7 @@ class TestUndercountRecovery(unittest.TestCase):
 
     fps = 30.0
 
-    def _samples(self, seconds, period=0.5, amp=28.0, flat=None, gap=None):
+    def _samples(self, seconds, period=0.5, amp=28.0, flat=None, gap=None, damp=None, delay=0):
         sig = jump_signal(self.fps, seconds, period, amp)
         samples, frame = [], 0
         for i in range(sig.size):
@@ -71,34 +71,93 @@ class TestUndercountRecovery(unittest.TestCase):
             if gap and gap[0] <= when < gap[1]:
                 frame += 1
                 continue  # 人根本不在画面里: 这一帧没有观测
+            # 回来时换了节拍(整段往后挪 delay 帧): 周期信号本身永远"不脱拍", 不这样造不出脱拍
+            shift = delay if (gap and when >= gap[1]) else 0
             value = 0.0 if (flat and flat[0] <= when < flat[1]) else sig[i]
-            samples.append((frame, when, (100.0, 100.0 - value, 200.0, 400.0 - value), 300.0 - value))
+            if damp and damp[0] <= when < damp[1]:
+                # 跳是照跳, 只是被前面的人挡糊了: 起跳还在, 幅度掉到计数阈值以下
+                value = sig[i] * damp[2]
+            samples.append((frame + shift, when, (100.0, 100.0 - value, 200.0, 400.0 - value), 300.0 - value))
             frame += 1
         return samples
 
-    def test_flat_stretch_is_backfilled_by_rhythm(self):
-        """人一直在画面里但有一段时间没数到峰: 按节奏补, 且与实测数分开记一笔。"""
+    def test_blurred_stretch_is_backfilled_by_rhythm(self):
+        """人一直在跳但有一段被挡糊了(起跳还在, 幅度掉到阈值以下): 按节奏补, 单独记一笔。"""
         cfg = Config()
-        res = count_track(1, self._samples(12, flat=(5.0, 6.0)), cfg, self.fps, "ankle")
-        self.assertGreaterEqual(res.stats.get("filled", 0), 1, res.stats)
+        res = count_track(1, self._samples(12, damp=(5.0, 6.0, 0.05)), cfg, self.fps, "ankle")
+        # 挡住的那几拍有两条找回路径: 踩了节拍格的亚阈值鼓包直接认领(recovered_grid),
+        # 没踩到格子的才走按节奏补齐(filled)。两条都算"数回来了"。
+        self.assertGreaterEqual(res.stats.get("filled", 0) + res.stats.get("recovered_grid", 0), 1, res.stats)
+        self.assertEqual(res.stats["fill_no_lift"], 0, res.stats)
         self.assertEqual(res.stats["total_count"], res.count + res.stats["filled"])
         self.assertGreater(res.stats["rhythm_coverage"], 0.7, res.stats)
+        # 关掉节拍格认领后, 这几拍必须改由按节奏补齐接住(不能谁都不要)
+        cfg.grid_fill_frac = 0.0
+        only_fill = count_track(1, self._samples(12, damp=(5.0, 6.0, 0.05)), cfg, self.fps, "ankle")
+        self.assertGreaterEqual(only_fill.stats.get("filled", 0), 1, only_fill.stats)
 
-    def test_absent_person_is_not_backfilled(self):
-        """人整段不在画面里: 不替他猜, 只记成"疑似漏计但未补"。"""
+    def test_stopped_person_is_not_backfilled(self):
+        """人一直在画面里却整段站着没跳(位移被压成直线): 没跳就不许按节奏凭空补。"""
         cfg = Config()
-        res = count_track(1, self._samples(12, gap=(5.0, 6.5)), cfg, self.fps, "ankle")
+        res = count_track(1, self._samples(12, flat=(5.0, 6.0)), cfg, self.fps, "ankle")
         self.assertEqual(res.stats.get("filled", 0), 0, res.stats)
-        self.assertGreaterEqual(res.stats.get("misses_unobserved", 0), 1, res.stats)
+        self.assertGreaterEqual(res.stats.get("fill_no_lift", 0), 1, res.stats)
+        # 关掉证据闸门(旧行为)时这段照样被补上, 证明起作用的是这条闸门
+        cfg.fill_min_lift_frac = 0.0
+        legacy = count_track(1, self._samples(12, flat=(5.0, 6.0)), cfg, self.fps, "ankle")
+        self.assertGreaterEqual(legacy.stats.get("filled", 0), 1, legacy.stats)
 
     def test_backfill_is_capped_per_gap(self):
         cfg = Config()
+        # 关掉节拍格认领: 这一段模糊窗口现在会被"踩格子的亚阈值鼓包"直接认成起跳,
+        # 那条路径先于按节奏补齐, 不关掉就量不到 max_fill_per_gap
+        cfg.grid_fill_frac = 0.0
         cfg.max_fill_per_gap = 1
-        one = count_track(1, self._samples(12, flat=(4.0, 6.4)), cfg, self.fps, "ankle")
+        one = count_track(1, self._samples(12, damp=(4.0, 6.4, 0.05)), cfg, self.fps, "ankle")
         cfg.max_fill_per_gap = 5
-        many = count_track(1, self._samples(12, flat=(4.0, 6.4)), cfg, self.fps, "ankle")
+        many = count_track(1, self._samples(12, damp=(4.0, 6.4, 0.05)), cfg, self.fps, "ankle")
         self.assertLessEqual(one.stats["filled"], many.stats["filled"])
         self.assertLessEqual(one.stats["filled"], 2, one.stats)
+        self.assertGreater(many.stats["filled"], one.stats["filled"], (one.stats, many.stats))
+
+    def test_grid_peaks_claim_blurred_jumps_below_threshold(self):
+        """节律清楚时, 踩在节拍格上但幅度不足阈值的鼓包要认领成起跳(config.grid_fill_frac)。
+
+        远景的人抬腿只有 0.3~0.7px, 阈值被框高比例下限托在 0.8px, 整段快跳会整片卡在阈值下面;
+        判据用"踩没踩格子"而不是"阈值再降点", 后者已经在别人身上放进过噪声。
+        """
+        cfg = Config()
+        on = count_track(1, self._samples(12, damp=(4.0, 6.4, 0.06)), cfg, self.fps, "ankle")
+        self.assertGreaterEqual(on.stats.get("recovered_grid", 0), 2, on.stats)
+        # 把资格门槛抬到实测清晰度以上: 关掉认领, 这几个鼓包就数不到了
+        strict = Config()
+        strict.grid_fill_clarity = 1.5
+        off = count_track(1, self._samples(12, damp=(4.0, 6.4, 0.06)), strict, self.fps, "ankle")
+        self.assertEqual(off.stats.get("recovered_grid", 0), 0, off.stats)
+        self.assertLess(off.count, on.count, (off.count, on.count))
+
+    def test_absent_person_is_not_backfilled(self):
+        """人整段不在画面里、回来时又脱了拍: 不替他猜, 只记成"疑似漏计但未补"。"""
+        cfg = Config()
+        res = count_track(1, self._samples(12, gap=(5.0, 6.5), delay=7), cfg, self.fps, "ankle")
+        self.assertEqual(res.stats.get("filled", 0), 0, res.stats)
+        self.assertGreaterEqual(res.stats.get("misses_unobserved", 0), 1, res.stats)
+
+    def test_absent_but_on_beat_gap_is_backfilled(self):
+        """遮挡 1.5s(正好三个周期)后回来还在节拍格上: 遮住的这段他照跳, 按相位连续性补。
+
+        遮挡期间位移是插值填的, 离地取证闸门在这种数据上量不出东西,
+        所以改由"出洞后的第一拍有没有脱拍"签字, 见 config.fill_hole_phase_tol。
+        """
+        cfg = Config()
+        res = count_track(1, self._samples(12, gap=(5.0, 6.5)), cfg, self.fps, "ankle")
+        self.assertGreaterEqual(res.stats.get("filled", 0), 1, res.stats)
+        self.assertGreaterEqual(res.stats.get("fill_phase", 0), 1, res.stats)
+        # 关掉旁路(旧行为): 遮挡空档一个都不补, 证明起作用的是这条旁路而不是别的闸门
+        cfg.fill_hole_phase_tol = 0.0
+        legacy = count_track(1, self._samples(12, gap=(5.0, 6.5)), cfg, self.fps, "ankle")
+        self.assertEqual(legacy.stats.get("filled", 0), 0, legacy.stats)
+        self.assertGreaterEqual(legacy.stats.get("misses_unobserved", 0), 1, legacy.stats)
 
     def test_substitute_channel_does_not_leave_a_step(self):
         """脚踝整段缺失时换成髋补, 要按两者的差平移回来, 不能留一个几十像素的台阶。"""
@@ -138,6 +197,62 @@ class TestUndercountRecovery(unittest.TestCase):
         expected = 9.0 / 0.45  # 20 个起跳
         total = improved.count + improved.stats["filled"]
         self.assertGreaterEqual(total, 0.8 * expected, (improved.count, improved.stats["filled"]))
+
+
+class TestFastJumpNoPhaseLock(unittest.TestCase):
+    """快跳不能被 2:1 锁相腰斩: 跳得越快, 旧配置数出来反而少一半。
+
+    现场复盘(179023428267, 25fps, 全景机位整组真频 3.57Hz): max_rate_hz 同时决定
+    "粗取峰的最短间隔"和"自相关能看的最短滞后"。它定在 3.5 时 25fps 下最短间隔是
+    round(25/3.5)=8 帧, 而真周期只有 7 帧, 于是单个起跳的峰一个都取不到, 峰间隔中位数
+    与自相关双双锁到两倍周期, 计数直接少一半。合成扫频同样显示 3.6Hz 起达成率 0.95->0.42,
+    且估计频率恰好是真实值的一半。
+    """
+
+    fps = 25.0
+    duration = 20.0
+
+    def _count(self, hz: float, amp: float = 14.0, max_rate_hz: float = None, **over):
+        cfg = Config()
+        if max_rate_hz is not None:
+            cfg.max_rate_hz = max_rate_hz
+        for key, value in over.items():
+            setattr(cfg, key, value)
+        sig = jump_signal(self.fps, self.duration, 1.0 / hz, amp)
+        samples = [(i, i / self.fps, (100.0, 100.0 - sig[i], 200.0, 400.0 - sig[i]), 300.0 - sig[i])
+                   for i in range(sig.size)]
+        res = count_track(1, samples, cfg, self.fps, "ankle")
+        return res.count + res.stats.get("filled", 0), res.rate_hz
+
+    def test_rate_cap_must_be_reachable(self):
+        """名义频率上限得真的数得到: 最短取峰间隔一旦向上取整, 就悄悄把上限拉长了一格。"""
+        cfg = Config()
+        hard_min = max(2, int(self.fps / cfg.max_rate_hz))
+        self.assertLessEqual(hard_min, self.fps / cfg.max_rate_hz,
+                             f"最短取峰间隔 {hard_min} 帧超过了上限对应的 {self.fps / cfg.max_rate_hz:.2f} 帧")
+
+    def test_three_point_six_hz_is_not_halved(self):
+        """现场那一组人的真实频率: 必须数到九成以上, 且频率不能被折半。"""
+        truth = self.duration * 3.6
+        total, rate = self._count(3.6)
+        self.assertGreaterEqual(total, 0.9 * truth, f"3.6Hz 只数到 {total}, 真值 {truth:.0f}")
+        self.assertGreater(rate, 3.0, f"估计频率 {rate} 被锁到了半周期")
+
+    def test_four_hz_is_still_counted(self):
+        truth = self.duration * 4.0
+        total, _ = self._count(4.0)
+        self.assertGreaterEqual(total, 0.9 * truth, f"4Hz 只数到 {total}, 真值 {truth:.0f}")
+
+    def test_old_three_and_a_half_cap_was_the_cause(self):
+        """把上限调回 3.5 必须重现腰斩, 否则说明这条测试没有真的锁住根因。"""
+        truth = self.duration * 3.6
+        # "落回地面"判据本身就能把这条腰斩救回来, 所以先关掉闸门看原始故障
+        rescued, _ = self._count(3.6, max_rate_hz=3.5)
+        total, rate = self._count(3.6, max_rate_hz=3.5, landing_valley_frac=0.0)
+        self.assertLess(total, 0.6 * truth, f"旧上限本该腰斩, 却数到了 {total}")
+        self.assertLess(rate, 2.6, f"旧上限本该把频率折半, 实测 {rate}")
+        self.assertGreaterEqual(rescued, 0.85 * truth,
+                                f"现行配置该把旧上限下的快跳救回来, 只数到 {rescued}")
 
 
 class TestParticipantVerdicts(unittest.TestCase):
@@ -258,6 +373,27 @@ class TestSignal(unittest.TestCase):
         self.assertGreaterEqual(len(peaks), 10)
         self.assertLessEqual(len(peaks), 14)
 
+    def test_landing_split_keeps_two_real_jumps(self):
+        """两次真起跳之间落回了地面: 即便间隔小于不应期, 也不许合并成一个。"""
+        values = np.array([0.0, 1.0, 8.0, 9.0, 7.0, 2.0, 1.0, 1.0, 2.0, 7.0, 9.0, 8.0, 1.0, 0.0])
+        kept, landing = sg.merge_close_peaks(values, [3, 10], min_distance=8, valley_frac=0.35, amp_thr=4.0)
+        self.assertEqual(kept, [3, 10])
+        self.assertEqual(landing, {10})
+
+    def test_landing_merge_collapses_a_shoulder(self):
+        """一次起跳上的高位假肩: 中间没有落回地面, 合并成一个峰, 并且留下较高的那个。"""
+        values = np.array([0.0, 5.0, 9.0, 8.0, 7.5, 8.0, 9.5, 8.0, 5.0, 0.0])
+        kept, landing = sg.merge_close_peaks(values, [2, 6], min_distance=8, valley_frac=0.35, amp_thr=4.0)
+        self.assertEqual(kept, [6])
+        self.assertEqual(landing, set())
+
+    def test_landing_rule_uses_the_threshold_not_peak_height(self):
+        """落回深浅用计数阈值量, 不用峰高: 峰再高, 中间没回到阈值以下就不算落过地。"""
+        values = np.array([0.0, 4.0, 14.0, 12.0, 10.0, 12.0, 17.0, 4.0, 1.0, 0.0])
+        kept, landing = sg.merge_close_peaks(values, [2, 6], min_distance=8, valley_frac=0.35, amp_thr=4.0)
+        self.assertEqual(kept, [6])      # 谷底 10px 远高于 0.35×阈值 → 同一次起跳的假肩, 留更高的那个
+        self.assertEqual(landing, set())
+
 
 class TestCounter(unittest.TestCase):
     def _samples(self, fps, duration, period, amp, noise=0.0, seed=0):
@@ -313,6 +449,23 @@ class TestParticipantGate(unittest.TestCase):
         ok, reason = classify(self._stats(lift_ratio=0.002), Config())
         self.assertFalse(ok)
         self.assertIn("起跳幅度", reason)
+
+    def test_head_that_never_lifts_is_rejected(self):
+        """站着拿绳的观众: 踝部被前景行人带出波纹, 头部却一直在原地 → 身体没离地, 剔除。"""
+        ok, reason = classify(self._stats(head_p95_px=0.85, body_p95_px=4.7), Config())
+        self.assertFalse(ok)
+        self.assertIn("头部", reason)
+
+    def test_head_moving_with_the_body_passes(self):
+        self.assertTrue(classify(self._stats(head_p95_px=3.5, body_p95_px=4.7), Config())[0])
+
+    def test_missing_head_channel_is_not_evidence(self):
+        """头被挡住时不能替他猜"没离地": 头部读数为空就必须放行。"""
+        self.assertTrue(classify(self._stats(head_p95_px=None, body_p95_px=4.7), Config())[0])
+
+    def test_subpixel_head_that_is_the_biggest_mover_passes(self):
+        """整条信号都只有一两像素时占比是 1, 亚像素不该单独定人死刑。"""
+        self.assertTrue(classify(self._stats(head_p95_px=0.6, body_p95_px=0.6), Config())[0])
 
     def test_one_bad_box_is_not_walking(self):
         """个别错位框不能把原地跳的人算成"走了几倍身高"。"""

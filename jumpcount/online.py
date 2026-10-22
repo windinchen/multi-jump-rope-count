@@ -16,8 +16,10 @@ import numpy as np
 
 from . import signal as sg
 from .config import Config
-from .counter import (OUT, amplitude_threshold, candidate_values, channel_quality, drift_spread,
-                      participation, recover_peaks)
+from .counter import (OUT, amplitude_threshold, candidate_values, channel_quality, channel_rank,
+                      LIFT_EVIDENCE_CHANNELS, drift_spread, gap_evidence_from_denses,
+                      gap_evidence_votes, participation, pick_smooth_pass, recover_grid_peaks,
+                      recover_peaks)
 
 
 class TrackCounter:
@@ -35,7 +37,7 @@ class TrackCounter:
             name: Deque(maxlen=self.window) for name in ("ankle", "hip", "head")
         }
         self.channel_used: Optional[str] = None
-        self.channel_scores: Dict[str, Tuple[float, int, float]] = {}
+        self.channel_scores: Dict[str, Tuple[float, int, float, float]] = {}
         self._scored_at: Optional[float] = None  # 上次重选通道的时刻: 得分逐帧几乎不变, 不必每次出数都重算三条
         self.frames: Deque[int] = Deque(maxlen=self.window)
         self.lifts: List[float] = []
@@ -45,6 +47,8 @@ class TrackCounter:
         self.count = 0
         self.rope = 0
         self.filled = 0  # 按节奏补齐的起跳: 单独记一笔, 与实测数分开
+        self.fill_no_lift = 0  # 空档里毫无离地证据 = 人停下了, 不替他凭空补数
+        self.fill_phase = 0  # 遮挡空档里靠"出洞没脱拍"补上的次数, 见 config.fill_hole_phase_tol
         self.recovered = 0  # 能量包络 + 多通道投票找回的起跳: 有信号依据, 与凭空补齐分开
         self.events: List[dict] = []
         self.height = 0.0
@@ -67,9 +71,12 @@ class TrackCounter:
         self.source_seen: Dict[str, int] = {}
         self.channel_delta: Dict[str, Tuple[float, int]] = {}  # 替身通道 -> 主通道的平移量(滑动平均)
         self.rhythm_strength: Optional[float] = None
+        self.rhythm_clarity: Optional[float] = None
         self.last_peak_frame: Optional[float] = None  # 上一个评估过的峰(含热身期跳过的), 空档判定的参考
         self.recovered_frames: Set[int] = set()  # 本次窗口里属于回捞的峰下标(窗口每次重算)
         self.carry_count = 0  # 上一次离场时寄存下来、这次接回来的次数: 与本轮实测分开显示
+        # 局部节奏历史: 只存"当作正常拍收下"的起跳间隔, 供空档判定当尺子(见 config.local_period_window)
+        self.gap_hist: Deque[float] = Deque(maxlen=32)
         self.sync_n = 0
         self.sync_a = 0.0
         self.sync_b = 0.0
@@ -158,7 +165,9 @@ class TrackCounter:
         reselect = (self.channel_used is None or self._scored_at is None
                     or now is None or now - self._scored_at >= self.cfg.channel_reselect_sec)
         if reselect:
-            scores: Dict[str, Tuple[float, int, float]] = {}
+            scores: Dict[str, Tuple[float, int, float, float]] = {}
+            # 通道择优每秒只重算一次, 分数里顺带记下每条通道自己的位移 p95:
+            # "头部零位移"闸门要用, 单独再跑一遍去基线会把这条链路的成本翻倍。
             for name in self.channel_buffers:
                 values = np.array([np.nan if v is None else v for v in self.channel_buffers[name]], dtype=np.float64)
                 if np.isfinite(values).sum() < 20:
@@ -168,7 +177,7 @@ class TrackCounter:
             self._scored_at = now
             if not scores:
                 return fallback
-            best = max(scores, key=lambda name: (scores[name][0], scores[name][1]))
+            best = max(scores, key=channel_rank(scores, self.cfg))
             current = self.channel_used if self.channel_used in scores else best
             if best != current and scores[best][0] < scores[current][0] + self.cfg.channel_switch_margin:
                 best = current
@@ -197,12 +206,24 @@ class TrackCounter:
         dense[~valid] = np.interp(idx[~valid], idx[valid], values[valid])
         lift = -dense
         baseline_win = self.cfg.baseline_win if lift.size >= self.cfg.baseline_win else _odd(lift.size // 2)
-        detrended = sg.detrend(lift, self.cfg.smooth_win, baseline_win)
+        # 与离线同一口径(向下取整): 实时链路是用户实际看到的那个数,
+        # 这里向上取整会让快跳在实时端先被锁成两倍周期, 离线再准也补不回来
+        hard_min = max(2, int(self.fps / self.cfg.max_rate_hz))
+        # 与离线同一档快跳窄窗: 3 帧中值会把快跳的一拍整个抹平, 实时端先少数,
+        # 离线再怎么补也只是修历史。关掉即退回"只用 smooth_win 一档"。
+        used = pick_smooth_pass(lift, valid, baseline_win, self.height, self.fps, self.cfg, hard_min) \
+            if self.cfg.online_fast_window else None
+        if used is None:
+            detrended = sg.detrend(lift, self.cfg.smooth_win, baseline_win)
+            # 与离线复盘同一条噪声口径: 缺帧处插过值会被拉平, 混进估计里噪声假性变小, 阈值跟着变松
+            noise = sg.hf_sigma_masked(detrended, valid)
+            peak_level = float(np.percentile(detrended, 95))
+            amp_thr = amplitude_threshold(noise, peak_level, self.height, self.cfg)
+            coarse = sg.find_peaks(detrended, hard_min, amp_thr, 0.8 * amp_thr)
+        else:
+            detrended, noise = used["detrended"], used["noise"]
+            peak_level, amp_thr, coarse = used["peak_level"], used["amp_thr"], used["coarse"]
         self.lifts = [round(float(v), 2) for v in detrended[-120:]]
-
-        # 与离线复盘同一条噪声口径: 缺帧处插过值会被拉平, 混进估计里噪声假性变小, 阈值跟着变松
-        noise = sg.hf_sigma_masked(detrended, valid)
-        peak_level = float(np.percentile(detrended, 95))
         lift_ratio_best = peak_level / self.height if self.height else 0.0
         body = np.array([np.nan if v is None else v for v in self.buffer_body], dtype=np.float64)
         if body.size == detrended.size and np.isfinite(body).sum() >= 12:
@@ -212,9 +233,6 @@ class TrackCounter:
             body_filled[~bvalid] = np.interp(bidx[~bvalid], bidx[bvalid], body[bvalid])
             body_detrended = sg.detrend(-body_filled, self.cfg.smooth_win, baseline_win)
             lift_ratio_best = max(lift_ratio_best, float(np.percentile(body_detrended, 95)) / max(self.height, 1e-6))
-        amp_thr = amplitude_threshold(noise, peak_level, self.height, self.cfg)
-        hard_min = max(2, int(round(self.fps / self.cfg.max_rate_hz)))
-        coarse = sg.find_peaks(detrended, hard_min, amp_thr, 0.8 * amp_thr)
         spacing = float(np.median(np.diff(coarse))) if len(coarse) >= 3 else 0.0
         if hard_min <= spacing <= self.fps / self.cfg.min_rate_hz:
             self.period_frames = spacing
@@ -225,7 +243,13 @@ class TrackCounter:
             self.period_frames = None
         period = self.period_frames or hard_min / self.cfg.refractory_ratio
         min_distance = max(hard_min, int(round(self.cfg.refractory_ratio * period)))
-        peaks = sg.find_peaks(detrended, min_distance, amp_thr, 0.8 * amp_thr)
+        # 与离线同一判据: 不应期到不到的地方看有没有落回地面, 快跳时不把真起跳当重复峰丢
+        landing: set = set()
+        if self.cfg.landing_valley_frac > 0:
+            peaks, landing = sg.merge_close_peaks(detrended, coarse, min_distance,
+                                                  self.cfg.landing_valley_frac, amp_thr)
+        else:
+            peaks = sg.find_peaks(detrended, min_distance, amp_thr, 0.8 * amp_thr)
         self.recovered_frames = set()
         if self.cfg.envelope_detect and self.cfg.search_back_levels:
             channels = {name: np.array([np.nan if v is None else v for v in buf], dtype=np.float64)
@@ -243,6 +267,16 @@ class TrackCounter:
         else:
             # 与周期同理: 这一窗口的峰不够, 上一个窗口量出来的节律强度不能继续作数
             self.rhythm_strength = None
+        # 另一个口径(自相关取在实测周期那一格), 与离线同一函数: 见 config.rhythm_measure 的注释
+        self.rhythm_clarity = round(sg.autocorr_clarity(detrended, int(round(period))), 3)
+        # 节拍格认领亚阈值鼓包(与离线同一条, 见 config.grid_fill_frac):
+        # 远景快跳的人抬腿只有半个像素, 整段卡在阈值下面, 但节拍格是准的 —— 实时端不接这条
+        # 就会比离线复盘少数一截(实测离线 5656 而实时停在 5247)。
+        # 放在节律强度算完之后: 认领来的峰不该反过来给"节奏清不清楚"作证(自我循环)。
+        if self.cfg.grid_fill_frac > 0:
+            peaks, grid_extra = recover_grid_peaks(detrended, valid[:detrended.size], list(peaks),
+                                                   period, amp_thr, float(self.rhythm_clarity), self.cfg)
+            self.recovered_frames |= grid_extra
 
         # 确认延迟取一个跳跃周期: 峰值必须已经完整下落才承认, 兼顾实时性与稳定性
         guard = max(self.guard, int(round(period)))
@@ -261,6 +295,13 @@ class TrackCounter:
 
         rhythm_trusted = (self.rhythm_strength is not None
                           and self.rhythm_strength >= self.cfg.keep_rhythm_strength)
+        # 与离线同构的局部节奏: 变速跳时拿全局周期当尺子, 快起来的那半段会被判成"没漏"
+        local_n = max(0, int(getattr(self.cfg, "local_period_window", 0) or 0))
+        period_low = float(max(2.0, hard_min))
+        period_high = float(self.fps) / max(0.05, self.cfg.min_rate_hz)
+        # 取证通道只在真出现"该补"的空档时才建: 建一次要三条通道各去一次基线, 逐帧建太贵
+        extras: Dict[str, Tuple[np.ndarray, float]] = {}
+        extras_ready = False
         for p in peaks:
             at = int(frames[p])
             if at <= self.emitted_frame or at > limit or at - self.emitted_frame < min_emit_gap:
@@ -274,12 +315,18 @@ class TrackCounter:
             frame_pos = float(frames[0]) + sub
             when = round(frame_pos / self.fps, 3)
             kind = "jump"
+            scale = period
+            if local_n >= 4 and len(self.gap_hist) >= local_n:
+                scale = min(max(float(np.percentile(np.asarray(list(self.gap_hist)[-local_n:],
+                                                                     dtype=np.float64),
+                                                        float(self.cfg.local_period_quantile))),
+                                period_low), period_high)
             last_jump = next((e for e in reversed(self.events) if e["kind"] == "jump"), None)
             if last_jump is not None:
                 gap = frame_pos - last_jump["frame"]
-                if gap < self.cfg.double_under_ratio * period:
+                if gap < self.cfg.double_under_ratio * scale and p not in landing:
                     kind = "bump"
-                elif gap > self.cfg.gap_ratio * period:
+                elif gap > self.cfg.gap_ratio * scale:
                     self.events.append(
                         {"kind": "gap", "frame": round(frame_pos, 2), "time": when, "track": self.track_id,
                          "gap": round(gap / max(period, 1e-6), 2)}
@@ -291,23 +338,65 @@ class TrackCounter:
                 reference = self.last_peak_frame
             gap_back = reference if reference < frame_pos else None
             if gap_back is not None:
-                missing = int(round((frame_pos - gap_back) / max(period, 1e-6))) - 1
+                missing = int(round((frame_pos - gap_back) / max(scale, 1e-6))) - 1
+                cov = coverage_between(gap_back, frame_pos)
+                beats_gap = (frame_pos - gap_back) / max(scale, 1e-6)
+                # 遮挡空档旁路(与离线同一条): 覆盖率不够时改由"出洞后的第一拍有没有脱拍"签字。
+                # 遮挡期间的位移是插值填出来的, 离地取证闸门在那种数据上量不到东西,
+                # 见 config.fill_hole_phase_tol
+                phase_ok = (self.cfg.fill_hole_phase_tol > 0 and missing >= 1
+                            and cov < self.cfg.min_fill_coverage
+                            and abs(beats_gap - round(beats_gap)) <= self.cfg.fill_hole_phase_tol)
                 # 空档是少数的主因: 遮挡十几帧就跳不到峰, 人一直都在跳。
                 # 但只有在"人确实在画面里、节奏也是实测出来的"时才补, 补的个数还封顶,
                 # 否则节奏一估歪就整段虚高, 宁少不虚。
                 if (missing >= 1 and self.cfg.interpolate_gaps and rhythm_trusted
-                        and coverage_between(gap_back, frame_pos) >= self.cfg.min_fill_coverage):
-                    steps = min(missing, self.cfg.max_fill_per_gap)
-                    for step in range(1, steps + 1):
-                        fill_pos = gap_back + (frame_pos - gap_back) * step / (steps + 1)
-                        record = {"kind": "interpolated", "frame": round(fill_pos, 2),
-                                  "time": round(fill_pos / self.fps, 3),
-                                  "amplitude": round(float(amp_thr) * 0.6, 2), "track": self.track_id}
-                        self.events.append(record)
-                        self.filled += 1
-                        self.rope += 1
-                        self.last_jump_time = record["time"]
-                        emitted.append(record)
+                        and (cov >= self.cfg.min_fill_coverage or phase_ok)):
+                    lo = max(0, int(round(gap_back - frames[0])))
+                    hi = min(detrended.size, int(round(frame_pos - frames[0])) + 1)
+                    if self.cfg.fill_evidence_votes > 0 and not extras_ready:
+                        extras_ready = True
+                        extras = self.evidence_signals(frames, valid, detrended.size,
+                                                       baseline_win, int(used["smooth_win"]) if used else self.cfg.smooth_win)
+                    if (self.cfg.fill_min_lift_frac > 0 and not phase_ok
+                            and gap_evidence_votes(detrended, amp_thr, extras, lo, hi, scale,
+                                                   int(self.cfg.fill_evidence_votes)) < self.cfg.fill_min_lift_frac):
+                        self.fill_no_lift += missing
+                    else:
+                        steps = min(missing, self.cfg.max_fill_per_gap)
+                        if self.cfg.max_fill_share > 0 and self.count >= 4:
+                            # 与离线同一条护栏: 补数只能是实测起跳的零头
+                            quota = int(self.count * self.cfg.max_fill_share)
+                            steps = max(0, min(steps, quota - self.filled))
+                        if self.cfg.fill_cap_expected and period > 0 and self.first_frame is not None:
+                            # 与离线同一条护栏: 补完不许超过"这段画面按节奏本该有的次数"。
+                            # 寄存接回来的次数发生在画面之外, 不在预算里, 要先减掉再比。
+                            # 尺子取"全局周期"和"局部快尺"里更短的一条: 全局周期被锁成两倍时,
+                            # 按它算的预算只有真实拍数的一半, 快跳的人会被这条上限整个卡死不补 ——
+                            # 那恰好是最需要补数的场景(实测实时 5086 -> 5054)。
+                            ruler = min(period, scale)
+                            warm = int(round(self.cfg.warmup_sec * self.fps))
+                            beats = (limit - self.first_frame - warm) / max(ruler, 1e-6)
+                            room = int(math.ceil(beats)) - (self.count + self.filled - self.carry_count)
+                            steps = max(0, min(steps, room))
+                        for step in range(1, steps + 1):
+                            fill_pos = gap_back + (frame_pos - gap_back) * step / (steps + 1)
+                            record = {"kind": "interpolated", "frame": round(fill_pos, 2),
+                                      "time": round(fill_pos / self.fps, 3),
+                                      "amplitude": round(float(amp_thr) * 0.6, 2), "track": self.track_id}
+                            if phase_ok:
+                                record["phase_filled"] = True
+                                self.fill_phase += 1
+                            self.events.append(record)
+                            self.filled += 1
+                            self.rope += 1
+                            self.last_jump_time = record["time"]
+                            emitted.append(record)
+            if kind == "jump" and local_n >= 4 and last_jump is not None:
+                back = max(last_jump["frame"], self.last_peak_frame or float("-inf"))
+                if frame_pos - back <= self.cfg.gap_ratio * period:
+                    # 只有被当作正常拍收下的间隔才进窗口: 漏计的双倍间隔会把尺子拉长
+                    self.gap_hist.append(frame_pos - back)
             self.emitted_frame = at
             self.last_peak_frame = frame_pos
             record = {"kind": kind, "frame": round(frame_pos, 2), "time": when,
@@ -332,11 +421,16 @@ class TrackCounter:
         self.stats = {
             "count": self.count,
             "filled": self.filled,
+            "fill_no_lift": self.fill_no_lift,
+            "fill_phase": self.fill_phase,
             "recovered": self.recovered,
             "total_count": self.count + self.filled,
             "snr": round(peak_level / noise, 2) if noise > 1e-6 else 0.0,
             "lift_ratio": round(peak_level / self.height, 4) if self.height else 0.0,
             "lift_ratio_best": round(lift_ratio_best, 4),
+            # 与离线同一口径的"头部零位移"证据: 复用通道择优那一趟算出来的各通道位移 p95
+            "head_p95_px": self._head_p95(),
+            "body_p95_px": self._body_p95(),
             "excursion_ratio": round(drift_spread(self.centers, self.fps, self.cfg.drift_window_sec,
                                                   list(self.center_frames)) / self.height, 3) if self.height else 0.0,
             "visibility": round(observed / max(1, span), 3),
@@ -344,6 +438,7 @@ class TrackCounter:
             "duration_sec": round(observed / self.fps, 2),
             "rate_hz": round(self.fps / self.period_frames, 2) if self.period_frames else None,
             "rhythm_strength": self.rhythm_strength,
+            "rhythm_clarity": self.rhythm_clarity,
             "period_source": "峰间隔中位数" if self.period_frames else "fallback",
             "height_cv": self.height_cv(),
             # 双脚同步性是"漂移的真人 vs 路人"唯一的反证, 不给判定层就等于实时链路只能剔除不能降级
@@ -355,6 +450,36 @@ class TrackCounter:
                                for name, v in self.channel_scores.items()},
         }
         return emitted
+
+    def evidence_signals(self, frames: np.ndarray, observed: np.ndarray, size: int,
+                         baseline_win: int, smooth_win: int) -> Dict[str, Tuple[np.ndarray, float]]:
+        """空档取证用的各部位去基线与阈值 —— 与离线 counter.gap_evidence_signals 同一套口径。
+
+        实时端的部位通道缓冲区本来就按帧对齐(与 recover_peaks 的投票同一份数据),
+        所以不需要再搬一次帧轴, 剩下的去基线/噪声/阈值全部走同一个函数。
+        """
+        if self.cfg.fill_evidence_votes <= 0:
+            return {}
+        denses: Dict[str, np.ndarray] = {}
+        for name in LIFT_EVIDENCE_CHANNELS:
+            if name == (self.channel_used or ""):
+                continue
+            buf = self.channel_buffers.get(name)
+            if not buf:
+                continue
+            values = np.array([np.nan if v is None else v for v in buf], dtype=np.float64)
+            values = values[:size]
+            if values.size != size:
+                continue
+            good = np.isfinite(values)
+            if good.sum() < 12:
+                continue
+            idx = np.arange(size)
+            filled = values.copy()
+            filled[~good] = np.interp(idx[~good], idx[good], values[good])
+            denses[name] = -filled
+        return gap_evidence_from_denses(denses, observed[:size], self.height, self.cfg,
+                                       smooth_win, baseline_win, size)
 
     def height_cv(self) -> Optional[float]:
         """框高的变异系数: 一个人不该忽大忽小, 突然变大变小多半是 ID 换到了别人身上。"""
@@ -379,6 +504,18 @@ class TrackCounter:
             self.last_jump_time = carry["last_jump_time"]
 
     # ---- 覆盖率: 只统计"人在画面里"的那些段 ----
+    def _head_p95(self) -> Optional[float]:
+        """头部位移 p95(像素): 头部通道观测不足时给出 None, 闸门自动不启用。"""
+        head = self.channel_scores.get("head")
+        if head is None or len(head) < 4 or head[2] < self.cfg.min_head_coverage:
+            return None
+        return round(float(head[3]), 3)
+
+    def _body_p95(self) -> Optional[float]:
+        """踝/髋/头里动得最大的那条通道位移 p95(像素)。"""
+        values = [float(score[3]) for score in self.channel_scores.values() if len(score) >= 4]
+        return round(max(values), 3) if values else None
+
     def _coverage(self) -> Tuple[int, int]:
         current = 0 if self.first_frame is None or self.last_frame is None else self.last_frame - self.first_frame + 1
         return self.span_total + current, self.observed_total + max(0, current - self.missing)
@@ -411,10 +548,13 @@ class TrackCounter:
             "visibility": stats.get("visibility"),
             "lift_ratio": stats.get("lift_ratio"),
             "lift_ratio_best": stats.get("lift_ratio_best"),
+            "head_p95_px": stats.get("head_p95_px"),
+            "body_p95_px": stats.get("body_p95_px"),
             "excursion_ratio": stats.get("excursion_ratio"),
             "ankle_sync": self.sync_value(),
             "duration_sec": stats.get("duration_sec"),
             "rhythm_strength": stats.get("rhythm_strength"),
+            "rhythm_clarity": stats.get("rhythm_clarity"),
             "height_cv": stats.get("height_cv"),
             "period_source": stats.get("period_source"),
             "last_jump": self.last_jump_time,

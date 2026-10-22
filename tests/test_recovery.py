@@ -55,6 +55,15 @@ def _cases(weak=(), weak_amp: float = 3.4, noise: float = 0.0, seed: int = 0):
             _train(strong, noise=noise, seed=seed + 2))
 
 
+def _zero_beats(amps, beats) -> list:
+    """把指定几拍的幅度抹平: 模拟某个部位被绳/前面的人挡住, 坐标糊成一条直线。"""
+    out = list(amps)
+    for k in beats:
+        if 0 <= k < len(out):
+            out[k] = 0.0
+    return out
+
+
 def _recover(det, channels, cfg, observed=None, amp_thr: float = AMP_THR):
     base = sg.find_peaks(det, MIN_DISTANCE, amp_thr, 0.8 * amp_thr)
     frames = np.arange(det.size, dtype=np.int64)
@@ -196,12 +205,87 @@ class TestRecoverGates(unittest.TestCase):
         on = count_track(1, samples, Config(), FPS)
         off_cfg = Config()
         off_cfg.envelope_detect = False
+        # 回捞现在有两条独立路径(能量包络 + 节拍格认领亚阈值鼓包), 这条测的是包络那条,
+        # 要一起关掉节拍格认领, 否则"关掉回捞却仍有回捞数"是假警报
+        off_cfg.grid_fill_frac = 0.0
         off = count_track(1, samples, off_cfg, FPS)
         self.assertGreaterEqual(on.count, off.count, f"开回捞反而少数: {on.count} < {off.count}")
         flagged = sum(1 for e in on.events if getattr(e, "recovered", False))
         self.assertEqual(on.stats.get("recovered", 0), flagged,
                          "stats 里的回捞数要与事件标记一致")
         self.assertEqual(off.stats.get("recovered", 0), 0)
+
+
+class TestGapFillEvidence(unittest.TestCase):
+    """按节奏补数的取证与口径: 补的每一笔要有别的部位作证, 报表还要说清"应有"按哪段时长算。"""
+
+    OCCLUDED = range(24, 28)     # 脚踝被挡住的几拍(约 1.8s), 起跳还在但位移被抹平
+
+    def _samples(self, ank_flat=(), hip_flat=(), head_flat=(), skip=None):
+        strong = [8.0] * _beats()
+        ank = _train(_zero_beats(strong, ank_flat), noise=0.4, seed=5)
+        hip = _train(_zero_beats(strong, hip_flat), noise=0.4, seed=6)
+        head = _train(_zero_beats(strong, head_flat), noise=0.4, seed=7)
+        samples = []
+        for i in range(N):
+            if skip is not None and skip[0] <= i < skip[1]:
+                continue     # 人整个离开画面: 这一帧连框都没有
+            box = (100.0, 100.0 - ank[i], 200.0, 400.0 - ank[i])
+            kps = np.zeros((17, 3))
+            kps[:, :2] = (150.0, 300.0)
+            kps[:, 2] = 0.9
+            kps[0] = (150.0, 300.0 - head[i], 0.9)
+            kps[11] = (150.0, 250.0 - hip[i], 0.9)
+            kps[12] = (160.0, 250.0 - hip[i], 0.9)
+            kps[15] = (138.0, 380.0 - ank[i], 0.9)
+            kps[16] = (162.0, 380.0 - ank[i], 0.9)
+            samples.append((i, i / FPS, box, 300.0 - ank[i], kps))
+        return samples
+
+    def test_occluded_feet_are_witnessed_by_other_channels(self):
+        """脚踝被挡平的这段: 髋和头还在按拍抬, 就许补(config.fill_evidence_votes)。
+
+        旧口径只看主通道, 挡平的那段取证恒为 0, 一笔都不敢补 —— 这是快跳漏算里最大的一块。
+        """
+        data = self._samples(ank_flat=self.OCCLUDED)
+        loose = count_track(1, data, Config(), FPS, "ankle")
+        self.assertGreaterEqual(loose.stats["filled"], 1, loose.stats)
+        self.assertEqual(loose.stats["fill_no_lift"], 0, loose.stats)
+        self.assertGreaterEqual(loose.stats["evidence_channels"], 2,
+                                f"取证通道没接上: {loose.stats['evidence_channels']}")
+        # 退回只看主通道: 同一段素材一笔都不补, 证明放行靠的是别的部位的旁证
+        only_main = Config()
+        only_main.fill_evidence_votes = 0
+        off = count_track(1, data, only_main, FPS, "ankle")
+        self.assertEqual(off.stats["filled"], 0, off.stats)
+        self.assertGreaterEqual(off.stats["fill_no_lift"], 1, off.stats)
+
+    def test_second_vote_needs_two_body_channels(self):
+        """votes=2 要求两个部位同时达标: 只剩髋在动时不许补, 单通道抖动才算不数。"""
+        data = self._samples(ank_flat=self.OCCLUDED, head_flat=self.OCCLUDED)
+        one = count_track(1, data, Config(), FPS, "ankle")        # 默认一票: 髋达标即放行
+        self.assertGreaterEqual(one.stats["filled"], 1, one.stats)
+        two_cfg = Config()
+        two_cfg.fill_evidence_votes = 2
+        two = count_track(1, data, two_cfg, FPS, "ankle")
+        self.assertEqual(two.stats["filled"], 0, two.stats)
+        self.assertGreaterEqual(two.stats["fill_no_lift"], 1, two.stats)
+
+    def test_expected_count_also_reports_the_visible_span(self):
+        """人中途离场 8 秒: "应有次数"要有一条只按真在画面里的秒数算的口径。
+
+        整段口径会把离场那 8 秒也算成"该跳没跳", 完整率永远追不平, 还会凭空招来补数。
+        """
+        samples = self._samples(skip=(220, 430))
+        res = count_track(1, samples, Config(), FPS, "ankle")
+        self.assertLess(res.stats["observed_sec"], res.stats["duration_sec"] - 5.0, res.stats)
+        self.assertAlmostEqual(res.stats["expected_visible"],
+                               round(res.rate_hz * res.stats["observed_sec"], 1), delta=0.2)
+        self.assertLess(res.stats["expected_visible"], res.stats["expected_count"] * 0.8, res.stats)
+        self.assertGreater(res.stats["rhythm_coverage_visible"], res.stats["rhythm_coverage"] + 0.2,
+                           res.stats)
+        # 按可见段算其实数到了九成五: 缺口集中在人不在画面的那一段, 不是计数器失灵
+        self.assertGreaterEqual(res.stats["rhythm_coverage_visible"], 0.9, res.stats)
 
 
 class TestOnlineRecovery(unittest.TestCase):
@@ -227,7 +311,9 @@ class TestOnlineRecovery(unittest.TestCase):
         rng = np.random.default_rng(3)
         snap = self._feed(lambda _f: float(rng.normal(0, 0.3)))
         self.assertFalse(snap["participant"], f"站着不动仍被判成在跳绳: {snap['reason']}")
-        self.assertLessEqual(snap.get("recovered"), 12,
+        # 上限按"每秒不到一个"定: 这条轨迹已经被剔出总量, 残余幻影只说明噪声里总能凑出几个鼓包;
+        # 一旦节拍闸失效, 26s 会被回捞成几十个, 量级上分得很开。
+        self.assertLessEqual(snap.get("recovered"), 18,
                              f"静止抖动被回捞成 {snap['recovered']} 个起跳, 节拍闸失效")
 
     def test_jumper_snapshot_reports_recovered_field(self):

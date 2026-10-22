@@ -1,0 +1,27 @@
+=== local_period_window=8 ===
+离线 计入 4513 + 低置信 392 = 4905 / 应有 7097 -> 完整率 0.691
+实时链路 4800 次, 在跳绳 70 人;  剔除但仍数到 270, 虚高(>1.05) 0 条
+回捞 528 次; 双计特征: 间隔 < 0.7 周期的相邻峰 107/4460 = 2.40%; 回捞峰自身双计 2/517 = 0.39%
+节奏离散度 CV(越低越稳, 均值): 0.669
+=== local_period_window=8 local_period_quantile=50 ===
+Traceback (most recent call last):
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 171, in <module>
+    main()
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 167, in main
+    print(format_metrics(evaluate(parse_overrides(sys.argv[1:]))))
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 63, in evaluate
+    res = count_track(slot.track_id, slot.samples, cfg, fps)
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/jumpcount/counter.py", line 835, in count_track
+    local_n = max(0, int(getattr(cfg, "local_period_window", 0) or 0))
+ValueError: invalid literal for int() with base 10: '8 local_period_quantile=50'
+=== local_period_window=16 local_period_quantile=25 ===
+Traceback (most recent call last):
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 171, in <module>
+    main()
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 167, in main
+    print(format_metrics(evaluate(parse_overrides(sys.argv[1:]))))
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/out/tune/quick.py", line 63, in evaluate
+    res = count_track(slot.track_id, slot.samples, cfg, fps)
+  File "/Users/windnchen/Desktop/项目/多人跳绳计数/jumpcount/counter.py", line 835, in count_track
+    local_n = max(0, int(getattr(cfg, "local_period_window", 0) or 0))
+ValueError: invalid literal for int() with base 10: '16 local_period_quantile=25'

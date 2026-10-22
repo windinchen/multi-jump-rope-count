@@ -24,22 +24,8 @@ from jumpcount.online import OnlineCounter  # noqa: E402
 from jumpcount.tracking import Tracker  # noqa: E402
 
 
-def main() -> None:
-    cfg = Config()
-    for item in sys.argv[1:]:
-        key, value = item.split("=", 1)
-        low = value.lower()
-        cast = low == "true" if low in ("true", "false") else None
-        if cast is None:
-            try:
-                cast = int(value)
-            except ValueError:
-                try:
-                    cast = float(value)
-                except ValueError:
-                    cast = value
-        setattr(cfg, key, cast)
-
+def evaluate(cfg: Config) -> dict:
+    """跑一遍 6 段素材的离线 + 实时链路, 返回第 8.2/9.3 节那套代理指标。"""
     caches = {}
     for video in VIDEOS:
         path = os.path.join(CACHE, os.path.basename(video) + ".pkl")
@@ -48,6 +34,7 @@ def main() -> None:
                 caches[video] = pickle.load(fh)
 
     kept = prov = lost = expected = 0.0
+    exp_vis = 0.0
     recovered = 0
     over = 0
     cvs: list = []
@@ -55,6 +42,7 @@ def main() -> None:
     track_ms = count_ms = 0.0
     online_total = online_people = 0
     online_frame_ms = []
+    filled = narrow_tracks = fast_tracks = 0
     for video, data in caches.items():
         fps = data["fps"]
         t0 = time.perf_counter()
@@ -77,13 +65,18 @@ def main() -> None:
             verdict, _reason = participation(res.stats, cfg)
             total = res.count + res.stats.get("filled", 0)
             recovered += int(res.stats.get("recovered", 0))
+            filled += int(res.stats.get("filled", 0))
+            fast_tracks += int(res.stats.get("smooth_fast_tried", 0))
+            narrow_tracks += int(res.stats.get("smooth_win_used", cfg.smooth_win) < cfg.smooth_win)
             exp = res.stats.get("expected_count", 0.0)
             if verdict == "in":
                 kept += total
                 expected += exp
+                exp_vis += float(res.stats.get("expected_visible", 0.0))
             elif verdict == "provisional":
                 prov += total
                 expected += exp
+                exp_vis += float(res.stats.get("expected_visible", 0.0))
             else:
                 lost += total
             if verdict != "out" and exp and total > 1.05 * exp:
@@ -124,13 +117,61 @@ def main() -> None:
         online_frame_ms = online_frame_ms + [float(np.median(online_ms))]
 
     total = kept + prov
-    print(f"离线 计入 {kept:.0f} + 低置信 {prov:.0f} = {total:.0f} / 应有 {expected:.0f} -> 完整率 {total / max(1, expected):.3f}")
-    print(f"实时链路 {online_total} 次, 在跳绳 {online_people} 人;  剔除但仍数到 {lost:.0f}, 虚高(>1.05) {over} 条")
-    print(f"回捞 {recovered} 次; 双计特征: 间隔 < 0.7 周期的相邻峰 {tight}/{double_check} = {tight / max(1, double_check):.2%}"
-          f"; 回捞峰自身双计 {rec_tight}/{rec_check} = {rec_tight / max(1, rec_check):.2%}")
-    print(f"节奏离散度 CV(越低越稳, 均值): {float(np.mean(cvs)) if cvs else 0:.3f}")
-    print(f"耗时: 跟踪 {track_ms:.1f} ms/帧(中位), 离线计数 {count_ms:.1f} ms/帧, "
-          f"实时链路 {float(np.mean(online_frame_ms)):.1f} ms/帧(含检测输入)")
+    return {
+        "kept": kept, "provisional": prov, "total": total, "expected": expected,
+        "coverage": total / max(1, expected),
+        "expected_visible": exp_vis,
+        "coverage_visible": total / max(1, exp_vis),
+        "online_total": online_total, "online_people": online_people,
+        "lost": lost, "over": over, "recovered": recovered,
+        "tight": tight, "double_check": double_check,
+        "double_rate": tight / max(1, double_check),
+        "rec_tight": rec_tight, "rec_check": rec_check,
+        "rec_double_rate": rec_tight / max(1, rec_check),
+        "cv": float(np.mean(cvs)) if cvs else 0.0,
+        "filled": filled, "narrow_tracks": narrow_tracks, "fast_tracks": fast_tracks,
+        "track_ms": track_ms, "count_ms": count_ms,
+        "online_ms": float(np.mean(online_frame_ms)) if online_frame_ms else 0.0,
+    }
+
+
+def format_metrics(m: dict) -> str:
+    return "\n".join([
+        f"离线 计入 {m['kept']:.0f} + 低置信 {m['provisional']:.0f} = {m['total']:.0f} / 应有 {m['expected']:.0f}"
+        f" -> 完整率 {m['coverage']:.3f}",
+        f"  (可见段口径: 应有 {m['expected_visible']:.0f} -> 数到 {m['coverage_visible']:.1%};"
+        f"  墙钟口径把遮挡与走路时间也算成应有, 只用于虚高判定)",
+        f"实时链路 {m['online_total']} 次, 在跳绳 {m['online_people']} 人; "
+        f" 剔除但仍数到 {m['lost']:.0f}, 虚高(>1.05) {m['over']} 条",
+        f"回捞 {m['recovered']} 次; 双计特征: 间隔 < 0.7 周期的相邻峰 {m['tight']}/{m['double_check']}"
+        f" = {m['double_rate']:.2%}; 回捞峰自身双计 {m['rec_tight']}/{m['rec_check']}"
+        f" = {m['rec_double_rate']:.2%}",
+        f"节奏离散度 CV(越低越稳, 均值): {m['cv']:.3f}",
+        f"耗时: 跟踪 {m['track_ms']:.1f} ms/帧(中位), 离线计数 {m['count_ms']:.1f} ms/帧, "
+        f"实时链路 {m['online_ms']:.1f} ms/帧(含检测输入)",
+    ])
+
+
+def parse_overrides(items) -> Config:
+    cfg = Config()
+    for item in items:
+        key, value = item.split("=", 1)
+        low = value.lower()
+        cast = low == "true" if low in ("true", "false") else None
+        if cast is None:
+            try:
+                cast = int(value)
+            except ValueError:
+                try:
+                    cast = float(value)
+                except ValueError:
+                    cast = value
+        setattr(cfg, key, cast)
+    return cfg
+
+
+def main() -> None:
+    print(format_metrics(evaluate(parse_overrides(sys.argv[1:]))))
 
 
 if __name__ == "__main__":
